@@ -15,25 +15,22 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-#from authentication import views
-#from shop import views
+from django.urls import path, include
 from anil_shop import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
-    path("index", views.index, name="index"), #костыль изменить ссылки для кнопок !!!!!!
+    path("index", views.index, name="index"), #костыль изменить ссылки для кнопок !!!!!! можно и не менять ))
 
-    # Aunthentication urls
-    path("login", views.login, name="login"),
-    path("register", views.register, name="register"),
+    # Aunthentication
+    path('auth/', include('authentication.urls')),
 
 
-    path("checkout", views.checkout, name="checkout"),
-    path("cart", views.checkout, name="cart"),
-    path("shop", views.shop, name="shop"),
+    path("checkout", views.checkout, name="checkout"), # shop urls
+    path("cart", views.checkout, name="cart"), # shop urls
+    path("shop", views.shop, name="shop"), # shop urls
     path("error", views.error, name="error"),
-    path("wishlist", views.wishlist, name="wishlist"),
+    path("wishlist", views.wishlist, name="wishlist"), # shop urls
 
 ]
