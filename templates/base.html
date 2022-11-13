@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="icon" type="image/png" href="{% static 'img/icon.png' %}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -125,8 +125,8 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-6 col-sm-4 col-4">
                             <div class="header-left p-rel d-flex align-items-center">
-                                <div class="logo pr-55 d-inline-block">
-                                    <a href="{% url 'index' %}"><img src="assets/img/logo/logo-white.png" alt="#"></a>
+                                <div class="navbar-brand" href="{% url 'index' %}">
+                                    <img src="{% static '/img/icon.png' %}" width="24" height="24" class="d-inline-block align-top" alt="Anil's Logo"></a>
                                 </div>
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
@@ -260,16 +260,25 @@
                                                 -->
                                             </li>
                                             <!--<li><a href="contact.html">Contact Us</a></li> -->
-                                            <li>
-                                                <a href="{% url 'authentication/login' %}">Login / Registration</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="{% url 'authentication/login' %}">Login</a></li>
-                                                    <li><a href="{% url 'authentication/register' %}">Registration</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
+                                            {% if user.is_authenticated %}
+                                                <!-- можно вообще не писать имя пользователя (почту) просто кнопик менять-->
+                                                <li></li>
+                                                You are logged in as:
+                                                {{ user.username }}
+                                                <li></li>
+                                                <li>
                                                 <a href="{% url 'authentication/logout' %}"> Log Out</a>
-                                            </li>
+                                                </li>
+
+                                            {% else %}
+                                                <li>
+                                                    <a href="{% url 'authentication/login' %}">Login / Registration</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{% url 'authentication/login' %}">Login</a></li>
+                                                        <li><a href="{% url 'authentication/register' %}">Registration</a></li>
+                                                    </ul>
+                                                </li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>
