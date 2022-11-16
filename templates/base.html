@@ -125,8 +125,10 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-6 col-sm-4 col-4">
                             <div class="header-left p-rel d-flex align-items-center">
-                                <div class="navbar-brand" href="{% url 'index' %}">
-                                    <img src="{% static '/img/icon.png' %}" width="24" height="24" class="d-inline-block align-top" alt="Anil's Logo"></a>
+                                <div class="logo pr-55 d-inline-block">
+                                    <a href="{% url 'index' %}">
+                                        <img src="static/img/icon.png" width="24" height="24" alt="#">
+                                    </a>
                                 </div>
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
@@ -261,15 +263,13 @@
                                             </li>
                                             <!--<li><a href="contact.html">Contact Us</a></li> -->
                                             {% if user.is_authenticated %}
-                                                <!-- можно вообще не писать имя пользователя (почту) просто кнопик менять-->
+                                                <!-- можно вообще не писать имя пользователя (почту) просто кнопки менять-->
                                                 <li></li>
-                                                You are logged in as:
                                                 {{ user.username }}
                                                 <li></li>
                                                 <li>
                                                 <a href="{% url 'authentication/logout' %}"> Log Out</a>
                                                 </li>
-
                                             {% else %}
                                                 <li>
                                                     <a href="{% url 'authentication/login' %}">Login / Registration</a>

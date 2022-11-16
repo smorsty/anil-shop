@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from authentication.forms import LoginForm
+from authentication.forms import LoginForm, RegisterForm
+from django.views.generic import TemplateView
 
 #AUNTHENTICATION
 
@@ -27,8 +28,27 @@ def login_user(request):
     return render(request, "authentication/login.html", context)
 
 
-def register(request):
-    return render(request, "authentication/register.html")
+class RegisterView(TemplateView):
+    template_name = 'authentication/register.html'
+
+    def get(self, request):
+        user_form = RegisterForm()
+        context = {'user_form': user_form}
+        return render(request, "authentication/register.html", context)
+
+    def post(self, request):
+        user_form = RegisterForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save() # создание нового пользователя
+            user.set_password(user.password) # сохраняем хеш пароль, а не сам пароль, одностороняя функция
+            user.save() #добавление в БД
+            login(request, user)
+            return redirect('index')
+
+        context = {'user_form': user_form}
+        return render(request, "authentication/register.html", context)
+
+
 
 def logout_user(request):
     logout(request)

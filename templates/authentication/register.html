@@ -125,8 +125,10 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-6 col-sm-4 col-4">
                             <div class="header-left p-rel d-flex align-items-center">
-                                <div class="navbar-brand" href="{% url 'index' %}">
-                                    <img src="{% static '/img/icon.png' %}" width="24" height="24" class="d-inline-block align-top" alt="Anil's Logo"></a>
+                                <div class="logo pr-55 d-inline-block" href="{% url 'index' %}">
+                                    <a href="{% url 'index' %}">
+                                        <img src="{% static '/img/icon.png' %}" width="24" height="24" alt="Anil's Logo">
+                                    </a>
                                 </div>
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
@@ -487,7 +489,7 @@
         </div>
     </section>
     <!-- sidebar area end -->
-<!--################################################################### ->>
+<!--################################################################### -->
     <main>
 
         <!-- breadcrumb area start -->
@@ -516,19 +518,31 @@
                   <div class="row">
                      <div class="col-lg-8 offset-lg-2">
                         <div class="basic-login">
-                              <h3 class="text-center mb-60">Signup From Here</h3>
-                              <form action="#">
-                                 <label for="name">Username <span>**</span></label>
-                                 <input id="name" type="text" placeholder="Enter Username" />
-                                 <label for="email-id">Email Address <span>**</span></label>
-                                 <input id="email-id" type="text" placeholder="Email address..." />
-                                 <label for="pass">Password <span>**</span></label>
-                                 <input id="pass" type="password" placeholder="Enter password..." />
-                                 <div class="mt-10"></div>
-                                 <button class="s-btn s-btn-4 w-100">Register Now</button>
-                                 <div class="or-divide"><span>or</span></div>
-                                 <a href="{% url 'authentication/login' %}" class="s-btn s-btn-2 w-100">login Now</a>
-                              </form>
+                            <form method="post" action="{% url 'authentication/register' %}">
+                                {% csrf_token %}
+                                
+                                {% for field in user_form %}
+                                    <span style="color: red">{{ field.errors }}</span>
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                {% endfor %}
+
+                                <!--
+                                <label for="name">Username <span>**</span></label>
+                                <input id="name" type="text" placeholder="Enter Username" />
+                                <label for="email-id">Email Address <span>**</span></label>
+                                <input id="email-id" type="text" placeholder="Email address..." />
+                                <label for="pass">Password <span>**</span></label>
+                                <input id="pass" type="password" placeholder="Enter password..." />
+                                <div class="mt-10"></div>
+                                проблема с окном почты, там лишняя инфа пишется можно через цикл убрать !!!
+                                -->
+                                <!--{{ user_form }}-->
+                                <button class="s-btn s-btn-4 w-100">Register Now</button>
+                                <div class="or-divide"><span>or</span></div>
+                                <a href="{% url 'authentication/login' %}" class="s-btn s-btn-2 w-100">login Now</a>
+                            </form>
+                            <h3 class="text-center mb-60">Signup From Here</h3>
                         </div>
                      </div>
                   </div>

@@ -125,8 +125,10 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-6 col-sm-4 col-4">
                             <div class="header-left p-rel d-flex align-items-center">
-                                <div class="navbar-brand" href="{% url 'index' %}">
-                                    <img src="{% static '/img/icon.png' %}" width="24" height="24" class="d-inline-block align-top" alt="Anil's Logo"></a>
+                                <div class="logo pr-55 d-inline-block" href="{% url 'index' %}">
+                                    <a href="{% url 'index' %}">
+                                        <img src="{% static '/img/icon.png' %}" width="24" height="24" alt="Anil's Logo">
+                                    </a>
                                 </div>
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
@@ -526,8 +528,8 @@
                             {% endfor %}
                            <form method="post" action="{% url 'authentication/login' %}">
                                {% csrf_token %}
-                              <label for="id_username">Email Address <span>**</span></label>
-                              <input id="name" type="text" placeholder="Email address..."  id="id_username" name="username"/>
+                              <label for="id_username">Username <span>**</span></label>
+                              <input id="name" type="text" placeholder="Username..."  id="id_username" name="username"/>
                               <label for="id_password">Password <span>**</span></label>
                               <input id="pass" type="password" placeholder="Enter password..." id="id_password" name="password" />
                               <div class="login-action mb-20 fix">

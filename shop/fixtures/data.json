@@ -1,0 +1,72 @@
+[
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "name": "ball",
+      "code": "1",
+      "price": "50.00",
+      "unit": null,
+      "image_url": null,
+      "note": "skipped"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "name": "t-shirt",
+      "code": "2",
+      "price": "100.00",
+      "unit": "per one",
+      "image_url": null,
+      "note": "cool item for your collection"
+    }
+  },
+  {
+    "model": "shop.payment",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "amount": "5.00",
+      "time": "2022-11-15T13:11:17.873Z",
+      "comment": "check"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "status": "2_waiting_for_payment",
+      "amount": "1.00",
+      "creation_time": "2022-11-15T13:32:32.158Z",
+      "payment": 1,
+      "comment": ""
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 3,
+    "fields": {
+      "order": 2,
+      "product": 2,
+      "quantity": 3,
+      "price": "100.00",
+      "discount": "0.00",
+      "gender": false
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 4,
+    "fields": {
+      "order": 2,
+      "product": 1,
+      "quantity": 1,
+      "price": "50.00",
+      "discount": "5.00",
+      "gender": false
+    }
+  }
+]
