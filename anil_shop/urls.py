@@ -26,11 +26,10 @@ urlpatterns = [
     # Aunthentication
     path('auth/', include('authentication.urls')),
 
+    #Shop
+    path('shop/', include('shop.urls')),
 
-    path("checkout", views.checkout, name="checkout"), # shop urls
-    path("cart", views.checkout, name="cart"), # shop urls
-    path("shop", views.shop, name="shop"), # shop urls
+    #Other
     path("error", views.error, name="error"),
-    path("wishlist", views.wishlist, name="wishlist"), # shop urls
 
 ]

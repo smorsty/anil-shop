@@ -133,132 +133,140 @@
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li><a href="{% url 'index' %}">Home</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="{% url 'index' %}">Home Layout 1</a></li>
-                                                    <li><a href="index-2.html">Home Layout 2</a></li>
-                                                </ul>
+                                            <li>
+                                                <a href="{% url 'index' %}">Home</a>
                                             </li>
                                             <li class="static">
-                                                <a href="{% url 'shop' %}">Shop <i class="icon-arrow-down"></i></a>
+                                                <a href="{% url 'shop/shop' %}">Clothing<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop' %}">Shop Pages</a>
+                                                       <a href="{% url 'shop/shop' %}">Категория</a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="shop-right-sidebar.html">Right Sidebar</a></li>
-                                                           <li><a href="{% url 'index' %}">Left Sidebar</a></li>
-                                                           <li><a href="shop-filter-dropdown.html">Filter Dropdown</a></li>
-                                                           <li><a href="shop-filter-canvas.html">Filter Canvas</a></li>
-                                                           <li><a href="shop-list-v1.html">List Version 1</a></li>
-                                                           <li><a href="shop-list-v2.html">List Version 2</a></li>
-                                                           <li><a href="shop-masonary.html">Masonary Layout</a></li>
-                                                           <li><a href="shop-tab.html">Tab Layout</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Футболки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Худи и Свитшоты</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Рубашки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Брюки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Джинсы</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Куртки</a></li>
                                                        </ul>
                                                    </li>
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop' %}">Features</a>
+                                                       <a href="{% url 'shop/shop' %}">Brands</a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop' %}">Filter Options</a></li>
-                                                           <li><a href="{% url 'shop' %}">Filters area</a></li>
-                                                           <li><a href="shop.html">Filters Sidebar</a></li>
-                                                           <li><a href="shop.html">Load More button</a></li>
-                                                           <li><a href="shop.html">infinit scrolling</a></li>
-                                                           <li><a href="shop.html">collections list</a></li>
-                                                           <li><a href="shop.html">hidden search</a></li>
-                                                           <li><a href="shop.html">Search Full screen</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Nike</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Zara</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">H&M</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Levis</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Mango</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Converse</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Dyson</a></li>
                                                        </ul>
                                                    </li>
                                                    <li class="d-none d-lg-block">
                                                        <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="{% url 'shop' %}">
-                                                               <img src="assets/img/banner/menu/banner-women.jpg" alt="">
+                                                           <a class="w-img" href="{% url 'shop/shop' %}">
+                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
                                                            </a>
-                                                            <a href="{% url 'shop' %}" class="menu-banner-btn">women</a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
                                                        </div>
                                                    </li>
                                                    <li class="d-none d-xl-block">
                                                        <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="{% url 'shop' %}">
-                                                               <img src="assets/img/banner/menu/banner-men.jpg" alt="">
+                                                           <a class="w-img" href="shop">
+                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
                                                            </a>
-                                                            <a href="{% url 'shop' %}" class="menu-banner-btn">men</a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
                                                        </div>
                                                    </li>
                                                 </ul>
                                              </li>
                                             <li class="static">
-                                                <a href="about-us.html">Pages</a>
-                                                <ul class="mega-menu mega-full mega-menu-3-col">
-                                                    <li class="has-dropdown">
-                                                        <a href="product-details.html">Product Layout</a>
-                                                        <ul class="has-dropdown">
-                                                            <li><a href="product-details.html">Product Details Layout 1</a></li>
-                                                            <li><a href="product-details-v2.html">Product Details Layout 2</a></li>
-                                                            <li><a href="product-details.html">Product Details Layout 3</a></li>
-                                                            <li><a href="product-details-grid.html">Product Details Grid</a></li>
-                                                            <li><a href="product-details-grid.html">Product Details Scroll</a></li>
-                                                            <li><a href="product-details.html">Left Sidebar</a></li>
-                                                            <li><a href="product-details.html">Right Sidebar</a></li>
-                                                            <li><a href="product-details.html">Sidebar full height</a></li>
-                                                            <li><a href="product-details.html">Product tab acceordiaons</a></li>
-                                                            <li><a href="product-details.html">Product full width ATC</a></li>
-                                                            <li><a href="product-details.html">Product full width layout</a></li>
-                                                            <li><a href="product-details.html">Advance Product Type <span class="menu-tag red">Hot</span></a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="has-dropdown">
-                                                        <a href="product-details.html">Other Pages</a>
-                                                        <ul class="has-dropdown">
-                                                            <li><a href="about-us.html">About Us</a></li>
-                                                            <li><a href="about-me.html">About Me</a></li>
-                                                            <li><a href="{% url 'authentication/login' %}">Login</a></li>
-                                                            <li><a href="{% url 'authentication/register' %}">Register</a></li>
-                                                            <li><a href="cart.html">Cart</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="team.html">Team</a></li>
-                                                            <li><a href="faq.html">Faq</a></li>
-                                                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                                                            <li><a href="{% url 'error' %}">404 Error</a></li>
-                                                            <li><a href="card.html">Gift Card</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="has-dropdown">
-                                                        <a href="product-details.html">Product Swatch</a>
-                                                        <ul class="has-dropdown">
-                                                            <li><a href="product-details.html">Product Color Swatch</a></li>
-                                                            <li><a href="product-details.html">Product Gallery Swatch</a></li>
-                                                            <li><a href="product-details.html">Product Images Swatch</a></li>
-                                                            <li><a href="product-details.html">Swatch Color</a></li>
-                                                            <li><a href="product-details.html">Swatch Color Circle</a></li>
-                                                            <li><a href="product-details.html">Swatch Radio</a></li>
-                                                            <li><a href="product-details.html">Swatch Radio COlor</a></li>
-                                                            <li><a href="product-details.html">Swatch Rectangle</a></li>
-                                                            <li><a href="product-details.html">Swatch Rectangle Color</a></li>
-                                                            <li><a href="product-details.html">Swatch Simple <span class="menu-tag red">Hot</span></a></li>
-                                                            <li><a href="product-details.html">Swatch Simple Color <span class="menu-tag red">Hot</span></a></li>
-                                                        </ul>
-                                                    </li>
-                                                 </ul>
-                                            </li>
-                                            <li>
-                                                <a href="blog.html">Blog</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="blog.html">Blog Main</a></li>
-                                                    <li><a href="blog-2-col.html">Blog 2 Column</a></li>
-                                                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                                                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                    <li><a href="blog-details-left-sidebar.html">Blog Details Left Sidebar</a></li>
+                                                <a href="{% url 'shop/shop' %}">Shoes<i class="icon-arrow-down"></i></a>
+                                                <ul class="mega-menu mega-menu-2-col">
+                                                   <li class="has-dropdown">
+                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Кроссовки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Ботинки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Спортиваня обувь</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Туфли</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Тапочки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Шлепки</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="has-dropdown">
+                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Nike</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">New Balance</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Reebok</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Puma</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="d-none d-lg-block">
+                                                       <div class="menu-banner-wrapper p-rel">
+                                                           <a class="w-img" href="{% url 'shop/shop' %}">
+                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
+                                                           </a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
+                                                       </div>
+                                                   </li>
+                                                   <li class="d-none d-xl-block">
+                                                       <div class="menu-banner-wrapper p-rel">
+                                                           <a class="w-img" href="shop">
+                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
+                                                           </a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
+                                                       </div>
+                                                   </li>
                                                 </ul>
-                                            </li>
-                                            <li>
-                                                <a href="about-us.html">About Us</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="about-us.html">About Us</a></li>
-                                                    <li><a href="about-me.html">About Me</a></li>
+                                             </li>
+                                            <li class="static">
+                                                <a href="{% url 'shop/shop' %}">Accessories<i class="icon-arrow-down"></i></a>
+                                                <ul class="mega-menu mega-menu-2-col">
+                                                   <li class="has-dropdown">
+                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Шапки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Шляпы</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Ремни</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Перчатки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Украшения</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="has-dropdown">
+                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Nike</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Zara</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">H&M</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Levis</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Mango</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Converse</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Dyson</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="d-none d-lg-block">
+                                                       <div class="menu-banner-wrapper p-rel">
+                                                           <a class="w-img" href="{% url 'shop/shop' %}">
+                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
+                                                           </a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
+                                                       </div>
+                                                   </li>
+                                                   <li class="d-none d-xl-block">
+                                                       <div class="menu-banner-wrapper p-rel">
+                                                           <a class="w-img" href="shop">
+                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
+                                                           </a>
+                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
+                                                       </div>
+                                                   </li>
                                                 </ul>
-                                            </li>
+                                             </li>
                                             <li>
                                                 <a href="{% url 'authentication/login' %}"> Login</a>
                                             </li>
@@ -285,7 +293,7 @@
                                     <a href="login.html" class="d-none d-xxl-inline-block">Login / Register</a>
                                     <div class="header-icon d-inline-block ml-30">
                                         <a href="javascript:void(0)" class="search-toggle d-none d-sm-inline-block"><i class="fal fa-search"></i></a>
-                                        <a href="{% url 'wishlist' %}" class="d-none d-xl-inline-block"><i class="fal fa-heart"></i><span>2</span></a>
+                                        <a href="{% url 'shop/wishlist' %}" class="d-none d-xl-inline-block"><i class="fal fa-heart"></i><span>2</span></a>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i><span>2</span></button>
                                     </div>
                                 </div>
@@ -380,8 +388,8 @@
                         <span>$180.00</span>
                     </div>
                     <div class="cartmini__bottom">
-                        <a href="{% url 'cart' %}" class="s-btn w-100 mb-20">view cart</a>
-                        <a href="{% url 'checkout' %}" class="s-btn s-btn-2 w-100">checkout</a>
+                        <a href="{% url 'shop/cart' %}" class="s-btn w-100 mb-20">view cart</a>
+                        <a href="{% url 'shop/checkout' %}" class="s-btn s-btn-2 w-100">checkout</a>
                     </div>
                 </div>
             </div>
@@ -520,7 +528,7 @@
                         <div class="basic-login">
                             <form method="post" action="{% url 'authentication/register' %}">
                                 {% csrf_token %}
-                                
+                                <!-- можно убрать окно для почты, но написать, чтобы люди писали почту, а для нас это будет как ник-->
                                 {% for field in user_form %}
                                     <span style="color: red">{{ field.errors }}</span>
                                     {{ field.label_tag }}
