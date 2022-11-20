@@ -15,6 +15,9 @@ class Product(models.Model):
     unit = models.CharField(max_length=255, blank=True, null=True)
     image_url = models.URLField(blank=True, null=True)
     note = models.TextField(blank=True, null=True)
+    #category = models.CharField(max_length=255, verbose_name='product_name')
+    #brand = models.CharField(max_length=255, verbose_name='product_name')
+    #size = models.CharField(max_length=255, verbose_name='product_name') == [XS, S, M, L, XL, XXL]
 
 
     class Meta:
@@ -119,7 +122,8 @@ class OrderItem(models.Model):
 
     @property
     def amount(self):
-        return self.quantity * (self.price - self.discount)
+        return self.quantity * (self.price - ((self.discount / 100) * self.price))
+        # discount - это проценты
 
 @transaction.atomic()
 def auto_payment_unpaid_orders(user: User):
