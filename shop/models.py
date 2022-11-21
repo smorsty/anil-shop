@@ -13,11 +13,13 @@ class Product(models.Model):
     code = models.CharField(max_length=255, verbose_name='product_code')
     price = models.DecimalField(max_digits=20, decimal_places=2)
     unit = models.CharField(max_length=255, blank=True, null=True)
-    image_url = models.URLField(blank=True, null=True)
+    image = models.ImageField(upload_to='static/img/', blank=True, null=True)
     note = models.TextField(blank=True, null=True)
     #category = models.CharField(max_length=255, verbose_name='product_name')
     #brand = models.CharField(max_length=255, verbose_name='product_name')
     #size = models.CharField(max_length=255, verbose_name='product_name') == [XS, S, M, L, XL, XXL]
+    # Добавить еще фоток, одно сделать главным остальные побочными, которые для страницы детализации
+    # можно и без размера, а бренд и категория для html удобно и сортировок
 
 
     class Meta:

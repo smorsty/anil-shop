@@ -539,26 +539,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="product_details.html"><img src="assets/img/products/1-1.jpg" alt=""></a></td>
-                                        <td class="product-name"><a href="product_details.html">T shirt for men</a></td>
-                                        <td class="product-price"><span class="amount">$130.00</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus"><input type="text" value="1" /></div>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$130.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="product_details.html"><img src="assets/img/products/2-1.jpg" alt=""></a></td>
-                                        <td class="product-name"><a href="product_details.html">Red scart for women</a></td>
-                                        <td class="product-price"><span class="amount">$120.50</span></td>
-                                        <td class="product-quantity">
-                                            <div class="cart-plus-minus"><input type="text" value="1" /></div>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$120.50</span></td>
-                                        <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    </tr>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td class="product-thumbnail"><a href="product_details.html"><img src="{{ item.image }}" alt=""></a></td>
+                                            <td class="product-name"> {{ item.name }} </td>
+                                            <td class="product-price"><span class="amount">{{ item.price }} ₽</span></td>
+                                            <td class="quantity">
+                                                <div class="product-quantity mb-20 mr-15">
+                                                    <div class="cart-plus-minus">
+                                                        <input type="number" name="quantity" value="1" min="1"
+                                                               required id = "id_quantity"/>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal"><span class="amount">{{ item.price }} ₽</span></td>
+                                            <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -582,8 +579,7 @@
                                 <div class="cart-page-total">
                                     <h2>Cart totals</h2>
                                     <ul class="mb-20">
-                                        <li>Subtotal <span>$250.00</span></li>
-                                        <li>Total <span>$250.00</span></li>
+                                        <li>Total <span>{{ cart.amount }} ₽</span></li>
                                     </ul>
                                     <a class="s-btn s-btn-2" href="{% url 'shop/checkout' %}">Proceed to checkout</a>
                                 </div>

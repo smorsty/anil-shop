@@ -557,7 +557,7 @@
                                             <a href="assets/img/products/details/nav/product-details-big-1.jpg" class="product-img-zoom popup-image">
                                                 <i class="fal fa-compress"></i>
                                             </a>
-                                            <img src="assets/img/products/details/nav/product-details-big-1.jpg" alt="">
+                                            <img src="{% static '/img/icon.png' %}" alt="#">
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pro-nav-2" role="tabpanel" aria-labelledby="pro-nav-2-tab">
@@ -591,10 +591,10 @@
                     <div class="col-xxl-4 col-xl-6 col-lg-6">
                         <div class="product__details-content pt-60">
                             <h3 class="product__details-title">
-                                <a href="product_details.html">Simple Stylish Women Backpack</a>
+                                <a href="{% url 'shop/product_details' product.pk %}">{{ product.name }}</a>
                             </h3>
                             <div class="product__details-price">
-                                <span class="price">£1.296.00</span>
+                                <span class="price">{{ product.price }} ₽</span>
                             </div>
                             <div class="product__details-rating d-flex align-items-center mb-15">
                                 <ul class="mr-10">
@@ -645,13 +645,17 @@
                                 <button type="button" class="product-size-guide-btn float-sm-end" data-bs-toggle="modal" data-bs-target="#productSizeModal">Size Guide</button>
                             </div>
                             <div class="product__details-action">
-                                <form action="#">
+                                <form method="post" action="{% url 'add_item_to_cart' product.pk %}">
                                     <div class="product__details-quantity d-sm-flex align-items-center">
+                                        {% csrf_token %}
                                         <div class="product-quantity mb-20 mr-15">
-                                            <div class="cart-plus-minus"><input type="text" value="1" /></div>
+                                            <div class="cart-plus-minus">
+                                                <input type="number" name="quantity" value="1" min="1"
+                                                       required id = "id_quantity"/>
+                                            </div>
                                         </div>
                                         <div class="product-add-cart mb-20">
-                                            <button class="s-btn s-btn-2 s-btn-big">add to cart</button>
+                                            <button class="s-btn s-btn-2 s-btn-big" type="submit">add to cart</button>
                                         </div>
                                     </div>
                                 </form>
