@@ -11,12 +11,16 @@ from django.utils import timezone
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='product_name')
     code = models.CharField(max_length=255, verbose_name='product_code')
+    category = models.CharField(max_length=255, verbose_name='product_category', blank=True, null=True)
+    brand = models.CharField(max_length=255, verbose_name='product_brand', blank=True, null=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
     unit = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to='static/img/', blank=True, null=True)
+    image = models.ImageField(upload_to='shop/images', blank=True, null=True)
+    image2 = models.ImageField(upload_to='shop/images', blank=True, null=True)
+    image3 = models.ImageField(upload_to='shop/images', blank=True, null=True)
+    image4 = models.ImageField(upload_to='shop/images', blank=True, null=True)
+    image5 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     note = models.TextField(blank=True, null=True)
-    #category = models.CharField(max_length=255, verbose_name='product_name')
-    #brand = models.CharField(max_length=255, verbose_name='product_name')
     #size = models.CharField(max_length=255, verbose_name='product_name') == [XS, S, M, L, XL, XXL]
     # Добавить еще фоток, одно сделать главным остальные побочными, которые для страницы детализации
     # можно и без размера, а бренд и категория для html удобно и сортировок
@@ -26,7 +30,7 @@ class Product(models.Model):
         ordering = ['pk']
 
     def __str__(self):
-        return f'{self.name} - {self.price}'
+        return f'{self.name}' # еще был self.price
 
 
 class Payment(models.Model):
@@ -42,7 +46,7 @@ class Payment(models.Model):
         return f'{self.user} - {self.amount}'
 
     @staticmethod
-    def get_balance(user:User):
+    def get_balance(user: User):
         amount = Payment.objects.filter(user=user).aggregate(Sum('amount'))['amount__sum']
         return amount or Decimal(0)
 
@@ -120,7 +124,7 @@ class OrderItem(models.Model):
         ordering = ['pk']
 
     def __str__(self):
-        return f'{self.product} - {self.price}'
+        return f'{self.product}' # еще был self.price
 
     @property
     def amount(self):

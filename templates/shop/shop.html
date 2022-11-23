@@ -734,7 +734,7 @@
                                             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6">
                                                 <div class="single-product mb-15 wow fadeInUp" data-wow-delay=".3s">
                                                     <div class="product-thumb">
-                                                        <img src="{% static '/img/icon.png' %}" alt="#">
+                                                        <img src="{{ product.image.url }}" width="40" height="165">
                                                         <!--<img src="{% static '/img/icon.png' %}" alt="#">-->
                                                         <form method="post" action="{% url 'add_item_to_cart' product.pk %}">
                                                             {% csrf_token %}

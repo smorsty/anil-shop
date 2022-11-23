@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from shop import views
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -13,5 +15,9 @@ urlpatterns = [
     path("wishlist", views.wishlist, name="shop/wishlist"),
     path('product/<int:pk>', views.ProductsDetailView.as_view(), name='shop/product_details'),
     path('add_item_to_cart/<int:pk>', views.add_item_to_cart, name='add_item_to_cart'),
+    path('delete_item/<int:pk>', views.CartDeleteItem.as_view(), name='cart_delete_item'),
 
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, documetn_root=settings.MEDIA_ROOT)

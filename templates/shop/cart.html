@@ -541,9 +541,11 @@
                                 <tbody>
                                     {% for item in items %}
                                         <tr>
-                                            <td class="product-thumbnail"><a href="product_details.html"><img src="{{ item.image }}" alt=""></a></td>
-                                            <td class="product-name"> {{ item.name }} </td>
+                                            <!--<td class="product-thumbnail"><a href="product_details.html"><img src="{{ item.image }}" alt=""></a></td>-->
+                                            <td class="product-thumbnail"><img src ="{{ item.image.url }}"></td>
+                                            <td class="product-name">{{ item }}</td>
                                             <td class="product-price"><span class="amount">{{ item.price }} ₽</span></td>
+                                            <!--
                                             <td class="quantity">
                                                 <div class="product-quantity mb-20 mr-15">
                                                     <div class="cart-plus-minus">
@@ -552,8 +554,18 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal"><span class="amount">{{ item.price }} ₽</span></td>
-                                            <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                            -->
+                                            <td class="product-name">{{ item.quantity }}</td>
+                                            <!--посчитать итог, умножить price на quantity это равно amount -->
+                                            <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
+                                            <td class="product-remove">
+                                                <div class="col-12 col-md-1 item">
+                                                    <form method="post" action="{% url 'cart_delete_item' item.pk %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" style="color: pink"><u>delete</u></button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -561,6 +573,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
+                                <!--
                                 <div class="coupon-all">
                                     <div class="coupon">
                                         <input id="coupon_code" class="input-text" name="coupon_code" value=""
@@ -572,6 +585,7 @@
                                         <button class="s-btn s-btn-2" name="update_cart" type="submit">Update cart</button>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
                         <div class="row justify-content-end">
@@ -755,9 +769,11 @@
                         <div class="section-title text-center">
                             <span class="p-subtitle">OUR NEWSLETTER</span>
                             <h3 class="p-title pb-15 mb-0">join our newsletter</h3>
+                            <!--
                             <p class="p-desc  pb-15">Subscribe to the Puik Store mailing list to receive updates on new
                                 arrivals, special offers<br>
                                 and other discount information.</p>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -882,7 +898,7 @@
                             <div class="col-xxl-12">
                                 <p>Opening Time: Mon-Fri: <span>9:00 am – 9:00 pm.</span> <span>Sat: 9:00 am – 6:00 pm.</span> Sun:
                                     9:00 am – 6:00 pm.<br>
-                                    Copyright © Puik Store all rights reserved. Powered by Theme_pure</p>
+                                    Copyright © ANIL Store all rights reserved. Powered by Theme_pure</p>
                                 <img src="{% static '/img/icon.png' %}" width="24" height="24" alt="Anil's Logo">
                             </div>
                         </div>
