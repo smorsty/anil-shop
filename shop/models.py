@@ -81,9 +81,9 @@ class Order(models.Model):
                                     status=Order.STATUS_CART
                                     ).first()
 
-        if cart and (timezone.now() - cart.creation_time).days > 7:
-            cart.delete()
-            cart = None
+        #if cart and (timezone.now() - cart.creation_time).days > 7:
+         #   cart.delete()
+          #  cart = None
 
         if not cart:
             cart = Order.objects.create(user=user,
@@ -119,17 +119,22 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=20, decimal_places=2)
     discount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    # size field with choise
 
     class Meta:
         ordering = ['pk']
 
     def __str__(self):
-        return f'{self.product}' # еще был self.price
+        return f'{self.product}' #еще был self.price
 
     @property
     def amount(self):
         return self.quantity * (self.price - ((self.discount / 100) * self.price))
         # discount - это проценты
+
+
+
+# don't used
 
 @transaction.atomic()
 def auto_payment_unpaid_orders(user: User):

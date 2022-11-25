@@ -293,8 +293,13 @@
                                     <a href="login.html" class="d-none d-xxl-inline-block">Login / Register</a>
                                     <div class="header-icon d-inline-block ml-30">
                                         <a href="javascript:void(0)" class="search-toggle d-none d-sm-inline-block"><i class="fal fa-search"></i></a>
+                                        <!--
                                         <a href="{% url 'shop/wishlist' %}" class="d-none d-xl-inline-block"><i class="fal fa-heart"></i><span>2</span></a>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i><span>2</span></button>
+                                        -->
+                                        <a href="{% url 'shop/cart' %}">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i></button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="header-bar ml-20 d-lg-none">
@@ -314,6 +319,7 @@
     <!-- header area end -->
 
     <!-- cart mini area start -->
+    <!--
     <div class="cartmini__area">
         <div class="modal fade" id="cartMiniModal" tabindex="-1" aria-labelledby="cartMiniModal" aria-hidden="true">
             <div class="modal-dialog">
@@ -396,6 +402,7 @@
             </div>
         </div>
     </div>
+    -->
     <!-- cart mini area end -->
 
     <!-- search area start -->

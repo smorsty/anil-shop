@@ -293,8 +293,13 @@
                                     <a href="login.html" class="d-none d-xxl-inline-block">Login / Register</a>
                                     <div class="header-icon d-inline-block ml-30">
                                         <a href="javascript:void(0)" class="search-toggle d-none d-sm-inline-block"><i class="fal fa-search"></i></a>
+                                        <!--
                                         <a href="{% url 'shop/wishlist' %}" class="d-none d-xl-inline-block"><i class="fal fa-heart"></i><span>2</span></a>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i><span>2</span></button>
+                                        -->
+                                        <a href="{% url 'shop/cart' %}">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i></button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="header-bar ml-20 d-lg-none">
@@ -556,7 +561,7 @@
                                             </td>
                                             -->
                                             <td class="product-name">{{ item.quantity }}</td>
-                                            <!--посчитать итог, умножить price на quantity это равно amount -->
+                                            <!--посчитать итог, умножить price на quantity, это равно amount -->
                                             <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
                                             <td class="product-remove">
                                                 <div class="col-12 col-md-1 item">
@@ -595,7 +600,10 @@
                                     <ul class="mb-20">
                                         <li>Total <span>{{ cart.amount }} ₽</span></li>
                                     </ul>
-                                    <a class="s-btn s-btn-2" href="{% url 'shop/checkout' %}">Proceed to checkout</a>
+                                    <!-- надо сделать переход на страницу где заполнять все данные, а там уже эту кнопку -->
+                                    <a class="s-btn s-btn-2" href="{% url 'make_order' %}">
+                                        Proceed to checkout
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -296,8 +296,13 @@
                                     <a href="login.html" class="d-none d-xxl-inline-block">Login / Register</a>
                                     <div class="header-icon d-inline-block ml-30">
                                         <a href="javascript:void(0)" class="search-toggle d-none d-sm-inline-block"><i class="fal fa-search"></i></a>
+                                        <!--
                                         <a href="wishlist.html" class="d-none d-xl-inline-block"><i class="fal fa-heart"></i><span>2</span></a>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i><span>2</span></button>
+                                        -->
+                                        <a href="{% url 'shop/cart' %}">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i class="fal fa-shopping-cart"></i></button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="header-bar ml-20 d-lg-none">
@@ -604,6 +609,7 @@
                                     </div>
                                 </form>
                             </div>
+                            <!--
                             <div class="single-widget pb-50 mb-50">
                                 <h4 class="widget-title">Filter By Choose Color</h4>
                                 <div class="widget-color-list widget-color-box scroll-box-default">
@@ -635,6 +641,7 @@
                                     </form>
                                 </div>
                             </div>
+                            -->
                             <div class="single-widget pb-50 mb-50">
                                 <h4 class="widget-title">Filter By Size</h4>
                                 <div class="widget-category-list scroll-box-default">
@@ -778,6 +785,7 @@
                                                                 <!--<del>{{ product.price }} ₽</del>  sale -->
 
                                                             </div>
+                                                            <!--
                                                             <div class="rating">
                                                                 <i class="fal fa-star active"></i>
                                                                 <i class="fal fa-star active"></i>
@@ -785,6 +793,7 @@
                                                                 <i class="fal fa-star"></i>
                                                                 <i class="fal fa-star"></i>
                                                             </div>
+                                                            -->
                                                         </div>
                                                     </form>
                                                 </div>

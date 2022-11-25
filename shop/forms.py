@@ -7,3 +7,5 @@ class AddQuantityForm(forms.ModelForm):
     class Meta:
         model = OrderItem
         fields = ['quantity']
+
+# form for size field here
