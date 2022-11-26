@@ -52,9 +52,9 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
-    STATUS_CART = 'cart_1'
-    STATUS_WAITING_FOR_PAYMENT = '2_waiting_for_payment'
-    STATUS_PAID = '3_paid'
+    STATUS_CART = 'cart'
+    STATUS_WAITING_FOR_PAYMENT = 'waiting_for_payment'
+    STATUS_PAID = 'paid'
     STATUS_CHOICES = [
         (STATUS_CART, 'cart'),
         (STATUS_WAITING_FOR_PAYMENT, 'waiting_for_payment'),
