@@ -13,10 +13,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 import smtplib
 
 
-
-def checkout(request):
-    return render(request, "shop/checkout.html")
-
 def cart(request):
     return render(request, "shop/cart.html")
 
@@ -94,17 +90,17 @@ def make_order(request):
     return redirect('shop/shop')
 
 
-def contact_view(request):
+def checkout(request):
     # если метод GET, вернем форму
     if request.method == 'GET':
         form = CheckoutForm()
     elif request.method == 'POST':
         #settings
         form = CheckoutForm(request.POST)
-        sender = 'mr.olegron@mail.ru' #static
-        password = "y8nEPsm64q6JVUTwT1gW" #static
-        recipient = 'mr.olegron@mail.ru' #static, need 2 more recipients (to_email)
-        recipient2 = 'demon.am@bk.ru'
+        sender = 'mr.olegron@mail.ru' #main address of our shop
+        password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
+        recipient = 'mr.olegron@mail.ru' #main address of our shop (or manager): anil.com smt like this
+        recipient2 = 'demon.am@bk.ru'#cope for me)
         server = smtplib.SMTP("smtp.mail.ru", 2525)
         server.starttls()
 
@@ -114,36 +110,42 @@ def contact_view(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             country = form.cleaned_data['country']
+            city = form.cleaned_data['city']
             street = form.cleaned_data['street']
             home_number = form.cleaned_data['home_number']
-            city = form.cleaned_data['city']
             zip = form.cleaned_data['zip']
             phone = form.cleaned_data['phone']
+            comment = form.cleaned_data['comment']
 
             #order_info
             cart = Order.get_cart(request.user)
             items = cart.orderitem_set.all()
+            recipient3 = request.user.email # get users email, for send him a mail with order_information
 
             out = '' + str(first_name) + '  ' + str(last_name) + '\n'
             out += str(country) + '  ' + str(city) + '  ' + str(street) + '  ' + str(home_number) + '  ' + str(zip) + '\n'
             out += str(phone) + '\n' + '\n'
-            out += str(cart)
+            out += str(cart) + '\n'
             for item in items:
-                out += str(item) + '  ' + str(item.price) + '  ' + str(item.quantity) + '\n'
+                out += '\t' + str(item) + '  ' + str(item.price) + '  ' + str(item.quantity) + '\n'
+            out += '\n' + '\n' + '\n' + str(comment)
                 # добавить размер еще, сначал просто в модель товара и сюда уже
             #sending email по идее не надо ничего проверять, просто отправлять, даннные всегда одни
             try:
                 server.login(sender, password)
-                server.sendmail(sender, recipient, out)
+                #server.sendmail(sender, recipient, out)
+                server.sendmail(sender, recipient2, out)
+                #server.sendmail(sender, recipient3, out) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
-            return redirect('shop/success')
+            cart.make_order()
+            return redirect('index')
     else:
         return HttpResponse('Error in form')
 
-    return render(request, "shop/check.html", {'form': form})
+    return render(request, "shop/checkout.html", {'form': form})
 
-
+# don't use
 def success_view(request):
     return HttpResponse('Done!')
 
