@@ -8,22 +8,45 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 
+CATEGORY_CHOICE = (
+    ('clothes', 'CLOTHES'),
+    ('shoes', 'SHOES'),
+    ('accessories', 'ACCESSORIES'),
+)
+PRODUCT_TYPE_CHOICE = (
+    ('t-shirt', 'T-SHIRT'),
+    ('sweater', 'SWEATER'),
+    ('shirt', 'SHIRT'),
+    ('trousers', 'TROUSERS'),
+    ('jeans', 'JEANS'),
+    ('outerwear', 'OUTERWEAR'),
+    ('sneakers', 'SNEAKERS'),
+    ('boots', 'BOOTS'),
+    ('flip_flops', 'FLIP_FLOPS'),
+    ('accessories', 'ACCESSORIES'),
+)
+
+
 class Product(models.Model):
-    name = models.CharField(max_length=255, verbose_name='product_name')
-    code = models.CharField(max_length=255, verbose_name='product_code')
-    category = models.CharField(max_length=255, verbose_name='product_category', blank=True, null=True)
+    name = models.CharField(max_length=255, verbose_name='product_name', blank=True, null=True)
+    code = models.CharField(max_length=255, verbose_name='product_code', blank=True, null=True)
+    category = models.CharField(max_length=255, choices=CATEGORY_CHOICE, default='shoes', verbose_name='product_category')
+    product_type = models.CharField(max_length=255, choices=PRODUCT_TYPE_CHOICE, default='sneakers', verbose_name='product_type')
     brand = models.CharField(max_length=255, verbose_name='product_brand', blank=True, null=True)
-    price = models.DecimalField(max_digits=20, decimal_places=2)
-    unit = models.CharField(max_length=255, blank=True, null=True)
+    price = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
+    old_price = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
+    # если есть акция то норм цену в price, а старую в old_price, если нет скидки то указывать одинаковую в две переменные
+    unit = models.CharField(max_length=255, blank=True, null=True)#нахуй не нужное поле по идее
     image = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image2 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image3 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image4 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image5 = models.ImageField(upload_to='shop/images', blank=True, null=True)
-    note = models.TextField(blank=True, null=True)
+    note = models.TextField(blank=True, null=True)#comment
+    #для бренда сделать тоже tuple и default установить
+    #возможно нужна еще дисконт цена
     #size = models.CharField(max_length=255, verbose_name='product_name') == [XS, S, M, L, XL, XXL]
-    # Добавить еще фоток, одно сделать главным остальные побочными, которые для страницы детализации
-    # можно и без размера, а бренд и категория для html удобно и сортировок
+    # размер нужен в Order.Item как и quantity сделать
 
 
     class Meta:
@@ -32,10 +55,13 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name}' # еще был self.price
 
+    def discount(self):
+        return int((((self.old_price - self.price) / self.price) * 100 ))
+
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    amount = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
     time = models.DateTimeField(auto_now_add=True)
     comment = models.TextField(blank=True, null=True)
 
@@ -64,7 +90,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # items = models.ManyToManyField(OrderItem, related_name='orders')
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=STATUS_CART)
-    amount = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    amount = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     payment = models.ForeignKey(Payment, on_delete=models.PROTECT, blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
@@ -117,8 +143,9 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(max_digits=20, decimal_places=2)
-    discount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    price = models.DecimalField(max_digits=20, decimal_places=0)
+    discount = models.DecimalField(max_digits=20, decimal_places=0, default=0)
+    # тут дисконт не нужен сделал в продукте, чтобы сразу через админку ставить
     # size field with choise
 
     class Meta:

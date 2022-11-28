@@ -754,7 +754,10 @@
                                                             <div class="product-add-cart mb-20">
                                                                 <button type="submit">add to cart</button>
                                                             </div>
-                                                            <span class="discount discount-1 p-abs">-20%</span>
+                                                            {% if product.discount > 0 %}
+                                                                <span class="discount discount-1 p-abs">-{{ product.discount }}%</span>
+                                                            {% endif %}
+                                                            <!--
                                                             <div class="product-action product-action-1 p-abs">
                                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#productModal" class="icon-box icon-box-1">
                                                                     <i class="fal fa-eye"></i>
@@ -769,6 +772,7 @@
                                                                     <i class="fal fa-layer-group"></i>
                                                                 </a>
                                                             </div>
+                                                            -->
                                                         </form>
                                                     </div>
                                                 <!-- конец оформления самой ячейки -->
@@ -781,9 +785,12 @@
                                                             </h4>
                                                             <div class="pro-price">
                                                                 {% csrf_token %}
-                                                                <span>{{ product.price }} ₽</span>
-                                                                <!--<del>{{ product.price }} ₽</del>  sale -->
-
+                                                                {% if product.price == product.old_price %}
+                                                                    <span>{{ product.price }} ₽</span>
+                                                                {% else %}
+                                                                    <span>{{ product.price }} ₽</span>
+                                                                    <del>{{ product.old_price }} ₽</del>
+                                                                {% endif %}
                                                             </div>
                                                             <!--
                                                             <div class="rating">

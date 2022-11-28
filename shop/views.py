@@ -7,7 +7,6 @@ from shop.models import Product, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-#хуита
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 import smtplib
@@ -65,7 +64,6 @@ def cart_view(request):
     context = {
         'cart': cart,
         'items': items,
-
     }
     return render(request, 'shop/cart.html', context)
 
@@ -94,17 +92,29 @@ def checkout(request):
     # если метод GET, вернем форму
     if request.method == 'GET':
         form = CheckoutForm()
+        cart = Order.get_cart(request.user)
+        items = cart.orderitem_set.all()
+        context = {
+            'form': form,
+            'cart': cart,
+            'items': items,
+        }
     elif request.method == 'POST':
         #settings
-        form = CheckoutForm(request.POST)
-        sender = 'mr.olegron@mail.ru' #main address of our shop
-        password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
-        recipient = 'mr.olegron@mail.ru' #main address of our shop (or manager): anil.com smt like this
+        my_sender = 'mr.olegron@mail.ru' #main address of our shop
+        my_password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
+        # по идее не нужно я же не буду со своей почты кидать ничего))
+        sender = 'anil_shop@mail.ru'
+        password = 'mYcFSd1za2qVh3zGXxzM'
+        my_recipient = 'mr.olegron@mail.ru' #main address of our shop (or manager): anil.com smt like this
+        recipient = 'anil_shop@mail.ru'
         recipient2 = 'demon.am@bk.ru'#cope for me)
+        recipient3 = request.user.email  # get users email, for send him a mail with order_information
         server = smtplib.SMTP("smtp.mail.ru", 2525)
         server.starttls()
 
         # если метод POST, проверим форму и отправим письмо
+        form = CheckoutForm(request.POST)
         if form.is_valid():
             #user_information
             first_name = form.cleaned_data['first_name']
@@ -120,7 +130,8 @@ def checkout(request):
             #order_info
             cart = Order.get_cart(request.user)
             items = cart.orderitem_set.all()
-            recipient3 = request.user.email # get users email, for send him a mail with order_information
+            if cart.amount == 0:
+                return redirect('index')
 
             out = '' + str(first_name) + '  ' + str(last_name) + '\n'
             out += str(country) + '  ' + str(city) + '  ' + str(street) + '  ' + str(home_number) + '  ' + str(zip) + '\n'
@@ -134,7 +145,8 @@ def checkout(request):
             try:
                 server.login(sender, password)
                 #server.sendmail(sender, recipient, out)
-                server.sendmail(sender, recipient2, out)
+                #server.sendmail(sender, recipient2, out)
+                server.sendmail(sender, my_recipient, out)
                 #server.sendmail(sender, recipient3, out) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
@@ -143,7 +155,7 @@ def checkout(request):
     else:
         return HttpResponse('Error in form')
 
-    return render(request, "shop/checkout.html", {'form': form})
+    return render(request, "shop/checkout.html", context=context)
 
 # don't use
 def success_view(request):

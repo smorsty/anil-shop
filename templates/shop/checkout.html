@@ -596,106 +596,126 @@
                                  <div class="row">
                                        <div class="col-md-12">
                                            <div class="checkout-form-list">
+                                               <!--
+                                               <label for="first_name">Имя<span>*</span></label>
+                                               <input id="first_name" type="text" placeholder="Введите Имя" />
+                                               <label for="last_name">Фамилия<span>*</span></label>
+                                               <input id="last_name" type="text" placeholder="Введите Фамилию" />
+                                               <label for="country">Страна<span>*</span></label>
+                                               <input id="country" type="text" placeholder="Введите свою старну" />
+                                               <label for="city">Город<span>*</span></label>
+                                               <input id="city" type="text" placeholder="Введите город" />
+                                               <label for="street">Улица<span>*</span></label>
+                                               <input id="street" type="text" placeholder="Введите улицу" />
+                                               <label for="home_number">Дом<span>*</span></label>
+                                               <input id="home_number" type="text" placeholder="Введите номер дома/квартиры" />
+                                               <label for="zip">Индекс<span>*</span></label>
+                                               <input id="zip" type="text" placeholder="Введите индекс" />
+                                               <label for="phone">Номер Телефона<span>*</span></label>
+                                               <input id="phone" type="text" placeholder="+7-" />
+                                               <label for="comment">Комментарий<span>*</span></label>
+                                               <input id="comment" type="text" placeholder="..." />
+                                               -->
+                                               <!--
                                                {% for field in form %}
                                                     {{ field.label_tag }}
                                                     {{ field }}
                                                {% endfor %}
+                                               -->
                                            </div>
                                        </div>
-                                     <!--
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                             <label for="first_name">First Name<span class="required">*</span></label>
-                                              <input id="first_name" type="text" placeholder="" />
+                                              Имя
+                                             {{ form.first_name }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                             <label for="last_name">Last Name<span class="required">*</span></label>
-                                              <input id="last_name" type="text" placeholder="" />
+                                             Фамилия
+                                              {{ form.last_name }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                             <label for="country">Страна<span class="required">*</span></label>
-                                              <input id="country" type="text" placeholder="" />
+                                              Страна
+                                              {{ form.country }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                              <label for="city">Город<span class="required">*</span></label>
-                                              <input id="city" type="text" placeholder="" />
+                                              Город
+                                              {{ form.city }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                              <label for="street">Улица<span class="required">*</span></label>
-                                              <input id="street" type="text" placeholder="" />
+                                              Улица
+                                              {{ form.street }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                              <label for="home_number">Номер дома<span class="required">*</span></label>
-                                              <input id="home_number" type="text" placeholder="номер дома/квартиры" />
+                                              Номер дома
+                                              {{ form.home_number }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                              <label for="zip">Индекс<span class="required">*</span></label>
-                                              <input id="zip" type="text" placeholder="" />
+                                              Индекс
+                                              {{ form.zip }}
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="checkout-form-list">
-                                              <label for="phone">Номер телефона<span class="required">*</span></label>
-                                              <input id="phone" type="text" placeholder="+7" />
+                                              Номер телефона
+                                              {{ form.phone }}
                                           </div>
                                        </div>
                                        <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                             <label for="comment">Комментарий</label>
-                                              <input id="comment" type="text" placeholder="..." />
+                                              Комментарий
+                                              {{ form.comment }}
                                           </div>
                                        </div>
-                                       -->
                                  </div>
                               </div>
                            </div>
                          <!--####################################################################################-->
                            <div class="col-lg-6">
                               <div class="your-order mb-30 ">
-                                 <h3>Your order</h3>
+                                 <h3>Ваш Заказ</h3>
                                  <div class="your-order-table table-responsive">
                                        <table>
                                           <thead>
                                              <tr>
-                                                   <th class="product-name">Product</th>
-                                                   <th class="product-total">Total</th>
+                                                   <th class="product-name">Товар</th>
+                                                   <th class="product-price">Цена</th>
+                                                   <th class="product-total">Итог</th>
                                              </tr>
                                           </thead>
                                           <tbody>
+                                          {% for item in items %}
                                              <tr class="cart_item">
                                                    <td class="product-name">
-                                                      Vestibulum suscipit <strong class="product-quantity"> × 1</strong>
+                                                       {{ item }}<strong class="product-quantity"> × {{ item.quantity }}</strong>
+                                                   </td>
+                                                   <td class="product-price">
+                                                       <span class="amount">{{ item.price }} ₽</span>
                                                    </td>
                                                    <td class="product-total">
-                                                      <span class="amount">$165.00</span>
+                                                       <span class="amount">{{ item.amount }} ₽</span>
                                                    </td>
                                              </tr>
-                                             <tr class="cart_item">
-                                                   <td class="product-name">
-                                                      Vestibulum dictum magna <strong class="product-quantity"> × 1</strong>
-                                                   </td>
-                                                   <td class="product-total">
-                                                      <span class="amount">$50.00</span>
-                                                   </td>
-                                             </tr>
+                                          {% endfor %}
                                           </tbody>
                                           <tfoot>
                                              <tr class="cart-subtotal">
-                                                   <th>Cart Subtotal</th>
-                                                   <td><span class="amount">$215.00</span></td>
+                                                   <th>Под-Итог</th>
+                                                   <td class="product-price"></td>
+                                                   <td><span class="amount">{{ cart.amount }} ₽</span></td>
                                              </tr>
+                                             <!-- если надо будет, то надо делать форму для этого как с количеством-->
                                              <tr class="shipping">
                                                    <th>Shipping</th>
                                                    <td>
@@ -714,15 +734,16 @@
                                                    </td>
                                              </tr>
                                              <tr class="order-total">
-                                                   <th>Order Total</th>
-                                                   <td><strong><span class="amount">$215.00</span></strong>
+                                                   <th>Сумма заказа</th>
+                                                   <td>
+                                                       <li><span>{{ cart.amount }} ₽</span></li>
                                                    </td>
                                              </tr>
                                           </tfoot>
                                        </table>
                                  </div>
                                  <div class="order-button-payment mt-20">
-                                    <button type="submit" class="s-btn s-btn-2">Place order</button>
+                                    <button type="submit" class="s-btn s-btn-2">Оформить Заказ</button>
                                  </div>
                               </div>
                            </div>
