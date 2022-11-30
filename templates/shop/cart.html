@@ -514,7 +514,7 @@
                             <h3>Your Cart</h3>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
-                                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                                   <li class="breadcrumb-item active" aria-current="page">Cart</li>
                                 </ol>
                             </nav>
@@ -530,25 +530,34 @@
             <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#">
-                        <div class="table-content table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail">Images</th>
-                                        <th class="cart-product-name">Product</th>
-                                        <th class="product-price">Unit Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
-                                        <th class="product-remove">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in items %}
+                    <div class="table-content table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Фото</th>
+                                    <th class="cart-product-name">Товар</th>
+                                    <th class="cart-product-size">Размер</th>
+                                    <th class="product-price">Цена за шт</th>
+                                    <th class="product-quantity">Количество</th>
+                                    <th class="product-subtotal">Итог</th>
+                                    <th class="product-remove">Удаление</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    {% if item.product.name != 'default' %}
                                         <tr>
-                                            <!--<td class="product-thumbnail"><a href="product_details.html"><img src="{{ item.image }}" alt=""></a></td>-->
-                                            <td class="product-thumbnail"><img src ="{{ item.image.url }}"></td>
-                                            <td class="product-name">{{ item }}</td>
+                                            <td class="product-thumb">
+                                                <a href="{% url 'shop/product_details' item.product.pk %}">
+                                                    <img src="{{ item.product.image.url }}" height="100px" width="4000px">
+                                                </a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a href="{% url 'shop/product_details' item.product.pk %}">
+                                                    <b>{{ item.product.name }}</b>
+                                                </a>
+                                            </td>
+                                            <td class="product-size">{{ item.size }}</td>
                                             <td class="product-price"><span class="amount">{{ item.price }} ₽</span></td>
                                             <!--
                                             <td class="quantity">
@@ -560,54 +569,59 @@
                                                 </div>
                                             </td>
                                             -->
-                                            <td class="product-name">{{ item.quantity }}</td>
+                                            <td class="product-quantity">{{ item.quantity }}</td>
                                             <!--посчитать итог, умножить price на quantity, это равно amount -->
                                             <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
                                             <td class="product-remove">
                                                 <div class="col-12 col-md-1 item">
                                                     <form method="post" action="{% url 'cart_delete_item' item.pk %}">
                                                         {% csrf_token %}
-                                                        <button type="submit" style="color: pink"><u>delete</u></button>
+                                                        <!--
+                                                        <script>
+                                                            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                                                        </script>
+                                                        не помогло (( -->
+                                                        <button type="submit" class="fa fa-times" style="color: black"></button>
                                                     </form>
                                                 </div>
                                             </td>
                                         </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <!--
-                                <div class="coupon-all">
-                                    <div class="coupon">
-                                        <input id="coupon_code" class="input-text" name="coupon_code" value=""
-                                            placeholder="Coupon code" type="text">
-                                        <button class="s-btn s-btn-2" name="apply_coupon" type="submit">Apply
-                                            coupon</button>
-                                    </div>
-                                    <div class="coupon2">
-                                        <button class="s-btn s-btn-2" name="update_cart" type="submit">Update cart</button>
-                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!--
+                            <div class="coupon-all">
+                                <div class="coupon">
+                                    <input id="coupon_code" class="input-text" name="coupon_code" value=""
+                                        placeholder="Coupon code" type="text">
+                                    <button class="s-btn s-btn-2" name="apply_coupon" type="submit">Apply
+                                        coupon</button>
                                 </div>
-                                -->
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="col-md-5 ml-auto">
-                                <div class="cart-page-total">
-                                    <h2>Cart totals</h2>
-                                    <ul class="mb-20">
-                                        <li>Total <span>{{ cart.amount }} ₽</span></li>
-                                    </ul>
-                                    <!-- надо сделать переход на страницу где заполнять все данные, а там уже эту кнопку -->
-                                    <a class="s-btn s-btn-2" href="{% url 'shop/checkout' %}">
-                                        Proceed to checkout
-                                    </a>
+                                <div class="coupon2">
+                                    <button class="s-btn s-btn-2" name="update_cart" type="submit">Update cart</button>
                                 </div>
                             </div>
+                            -->
                         </div>
-                    </form>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-md-5 ml-auto">
+                            <div class="cart-page-total">
+                                <h2>Итог корзины</h2>
+                                <ul class="mb-20">
+                                    <li>Сумма<span>{{ cart.amount }} ₽</span></li>
+                                </ul>
+                                <!-- надо сделать переход на страницу где заполнять все данные, а там уже эту кнопку -->
+                                <a class="s-btn s-btn-2" href="{% url 'shop/checkout' %}">
+                                    Перейти к оформлению
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             </div>
@@ -615,159 +629,7 @@
         <!-- Cart Area End-->
 
         <!-- product modal area start -->
-        <div class="product__modal-area modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="product__modal-inner position-relative">
-                    <div class="product__modal-close">
-                        <button data-bs-dismiss="modal" aria-label="Close">
-                            <i class="ti-close"></i>
-                        </button>
-                    </div>
-                    <div class="product__modal-left">
-                        <div class="tab-content mb-10" id="productModalThumb">
-                            <div class="tab-pane fade show active" id="pro-1" role="tabpanel" aria-labelledby="pro-1-tab">
-                                <div class="product__modal-thumb w-img">
-                                    <img src="assets/img/products/modal/product-modal-1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pro-2" role="tabpanel" aria-labelledby="pro-2-tab">
-                                <div class="product__modal-thumb w-img">
-                                    <img src="assets/img/products/modal/product-modal-2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pro-3" role="tabpanel" aria-labelledby="pro-3-tab">
-                                <div class="product__modal-thumb w-img">
-                                    <img src="assets/img/products/modal/product-modal-3.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pro-4" role="tabpanel" aria-labelledby="pro-4-tab">
-                                <div class="product__modal-thumb w-img">
-                                    <img src="assets/img/products/modal/product-modal-4.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__modal-nav">
-                            <ul class="nav nav-tabs" id="productModalNav" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link active" id="pro-1-tab" data-bs-toggle="tab" data-bs-target="#pro-1" type="button" role="tab" aria-controls="pro-1" aria-selected="true">
-                                      <img src="assets/img/products/modal/product-modal-sm-1.jpg" alt="">
-                                  </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link" id="pro-2-tab" data-bs-toggle="tab" data-bs-target="#pro-2" type="button" role="tab" aria-controls="pro-2" aria-selected="false">
-                                    <img src="assets/img/products/modal/product-modal-sm-2.jpg" alt="">
-                                  </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link" id="pro-3-tab" data-bs-toggle="tab" data-bs-target="#pro-3" type="button" role="tab" aria-controls="pro-3" aria-selected="false">
-                                    <img src="assets/img/products/modal/product-modal-sm-3.jpg" alt="">
-                                  </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pro-4-tab" data-bs-toggle="tab" data-bs-target="#pro-4" type="button" role="tab" aria-controls="pro-4" aria-selected="false">
-                                      <img src="assets/img/products/modal/product-modal-sm-4.jpg" alt="">
-                                    </button>
-                                </li>
-                              </ul>
-                        </div>
-                    </div>
-                    <div class="product__modal-right">
-                        <h3 class="product__modal-title">
-                            <a href="product_details.html">Living Room Lighting</a>
-                        </h3>
-                        <div class="product__modal-rating d-flex align-items-center">
-                            <ul class="mr-10">
-                                <li>
-                                    <a href="#"><i class="ti-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ti-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ti-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ti-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ti-star"></i></a>
-                                </li>
-                            </ul>
-                            <div class="customer-review">
-                                <a href="#">(1 customer review)</a>
-                            </div>
-                        </div>
-                        <div class="product__modal-price mb-10">
-                            <span class="price new-price">$700.00</span>
-
-                            <span class="price old-price">$899.99</span>
-                        </div>
-                        <div class="product__modal-available">
-                            <p> Availability: <span>In Stock</span> </p>
-                        </div>
-                        <div class="product__modal-sku">
-                            <p> Sku: <span> 0026AG90-1</span> </p>
-                        </div>
-                        <div class="product__modal-des">
-                            <p>Typi non habent claritatem insitam, est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod legunt saepius.…</p>
-                        </div>
-                        <div class="product__modal-quantity mb-15">
-                            <h5>Quantity:</h5>
-                            <form action="#">
-                                <div class="pro-quan-area d-lg-flex align-items-center">
-                                    <div class="product-quantity mr-20 mb-25">
-                                        <div class="cart-plus-minus p-relative"><input type="text" value="1" /></div>
-                                    </div>
-                                    <div class="product__modal-cart mb-25">
-                                        <button class="product-modal-cart-btn " type="submit">Add to cart</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="product__modal-categories d-flex align-items-center">
-                            <span>Categories: </span>
-                            <ul>
-                                <li><a href="#">Decor, </a></li>
-                                <li><a href="#">Lamp, </a></li>
-                                <li><a href="#">Lighting</a></li>
-                            </ul>
-                        </div>
-                        <div class="product__modal-categories d-flex align-items-center">
-                            <span>Tags: </span>
-                            <ul>
-                                <li><a href="#">Furniture, </a></li>
-                                <li><a href="#">Lighting, </a></li>
-                                <li><a href="#">Living Room, </a></li>
-                                <li><a href="#">Table</a></li>
-                            </ul>
-                        </div>
-                        <div class="product__modal-share d-flex align-items-center">
-                            <span>Share this product: </span>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <!-- product modal area start -->
+        <!-- product modal area end -->
 
         <!-- subscribe area start -->
         <div class="subscribe-area pb-100 gray-bg-2 pt-95">

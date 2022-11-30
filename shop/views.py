@@ -2,7 +2,7 @@ import smtplib
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import redirect, render
-from shop.forms import AddQuantityForm, CheckoutForm
+from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm
 from shop.models import Product, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -28,6 +28,7 @@ class ProductsListView(ListView):
     model = Product
     template_name = 'shop/shop.html'
 
+
 class ProductsDetailView(DetailView):
     model = Product
     template_name = 'shop/product_details.html'
@@ -41,15 +42,21 @@ class ProductsDetailView(DetailView):
 def add_item_to_cart(request, pk):
     if request.method == 'POST':
         quantity_form = AddQuantityForm(request.POST)
-        if quantity_form.is_valid():
+        size_form = PickSizeForm(request.POST)
+        if quantity_form.is_valid() and size_form.is_valid():
             quantity = quantity_form.cleaned_data['quantity']
+            size = size_form.cleaned_data['size']
+            if not size:
+                size = 'one_size'
             if quantity:
                 cart = Order.get_cart(request.user)
                 #product = Product.objects.get(pk=pk)
                 product = get_object_or_404(Product, pk=pk)
                 cart.orderitem_set.create(product=product,
                                           quantity=quantity,
-                                          price=product.price)
+                                          price=product.price,
+                                          size=size,
+                                          )
                 cart.save()
                 return redirect('shop/cart')
         else:
@@ -64,6 +71,7 @@ def cart_view(request):
     context = {
         'cart': cart,
         'items': items,
+        #'csrfmiddlewaretoken': '{{ csrf_token }}',
     }
     return render(request, 'shop/cart.html', context)
 
@@ -74,7 +82,7 @@ class CartDeleteItem(DeleteView):
     template_name = 'shop/cart.html'
     success_url = reverse_lazy('shop/cart')
 
-    # Проверка доступа
+
     def get_queryset(self):
         qs = super().get_queryset()
         qs.filter(order__user=self.request.user)
@@ -138,7 +146,7 @@ def checkout(request):
             out += str(phone) + '\n' + '\n'
             out += str(cart) + '\n'
             for item in items:
-                out += '\t' + str(item) + '  ' + str(item.price) + '  ' + str(item.quantity) + '\n'
+                out += str(item) + ' size: ' + str(item.size) + ' price: ' + str(item.price) + ' quantity: ' + str(item.quantity) + '\n'
             out += '\n' + '\n' + '\n' + str(comment)
                 # добавить размер еще, сначал просто в модель товара и сюда уже
             #sending email по идее не надо ничего проверять, просто отправлять, даннные всегда одни

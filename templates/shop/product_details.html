@@ -539,10 +539,30 @@
                                 <ul class="nav nav-tabs flex-sm-column" id="productDetailsNav" role="tablist">
                                     <li class="nav-item" role="presentation">
                                       <button class="nav-link active" id="pro-nav-1-tab" data-bs-toggle="tab" data-bs-target="#pro-nav-1" type="button" role="tab" aria-controls="pro-nav-1" aria-selected="true">
-                                          <img src="{{ product.image.url }}" alt="">
+                                          <img src="{{ product.image.url }}" height="102px" width="80px">
                                       </button>
                                     </li>
-                                    <!--верызал часть кода, в файле product_details_delete_part -->
+                                    {% if product.image2.url != Null %}
+                                        <li class="nav-item" role="presentation">
+                                          <button class="nav-link" id="pro-nav-2-tab" data-bs-toggle="tab" data-bs-target="#pro-nav-2" type="button" role="tab" aria-controls="pro-nav-2" aria-selected="false">
+                                            <img src="{{ product.image2.url }}" height="102px" width="80px">
+                                          </button>
+                                        </li>
+                                    {% endif %}
+                                    {% if product.image3.url != Null %}
+                                        <li class="nav-item" role="presentation">
+                                          <button class="nav-link" id="pro-nav-3-tab" data-bs-toggle="tab" data-bs-target="#pro-nav-3" type="button" role="tab" aria-controls="pro-nav-3" aria-selected="false">
+                                            <img src="{{ product.image3.url }}" height="102px" width="80px">
+                                          </button>
+                                        </li>
+                                    {% endif %}
+                                    {% if product.image4.url != Null %}
+                                        <li class="nav-item" role="presentation">
+                                          <button class="nav-link" id="pro-nav-4-tab" data-bs-toggle="tab" data-bs-target="#pro-nav-4" type="button" role="tab" aria-controls="pro-nav-4" aria-selected="false">
+                                            <img src="{{ product.image4.url }}" height="102px" width="80px">
+                                          </button>
+                                        </li>
+                                    {% endif %}
                                   </ul>
                             </div>
                             <!-- отображение в галереи, не на сайте, вроде понятно -->
@@ -553,7 +573,7 @@
                                             <a href="{{ product.image.url }}" class="product-img-zoom popup-image">
                                                 <i class="fal fa-compress"></i>
                                             </a>
-                                                <img src="{{ product.image.url }}" alt="">
+                                                <img src="{{ product.image.url }}" height="508px" width="521px">
                                         </div>
                                     </div>
                                     {% if product.image2.url != Null %}
@@ -562,7 +582,7 @@
                                                 <a href="{{ product.image2.url }}" class="product-img-zoom popup-image">
                                                     <i class="fal fa-compress"></i>
                                                 </a>
-                                                <img src="{{ product.image2.url }}" alt="">
+                                                <img src="{{ product.image2.url }}" height="508px" width="521px">
                                             </div>
                                         </div>
                                     {% endif %}
@@ -572,7 +592,7 @@
                                                 <a href="{{ product.image3.url }}" class="product-img-zoom popup-image">
                                                     <i class="fal fa-compress"></i>
                                                 </a>
-                                                <img src="{{ product.image3.url }}" alt="">
+                                                <img src="{{ product.image3.url }}" height="508px" width="521px">
                                             </div>
                                         </div>
                                     {% endif %}
@@ -582,7 +602,7 @@
                                                 <a href="{{ product.image4.url }}" class="product-img-zoom popup-image">
                                                     <i class="fal fa-compress"></i>
                                                 </a>
-                                                <img src="{{ product.image4.url }}" alt="">
+                                                <img src="{{ product.image4.url }}" height="508px" width="521px">
                                             </div>
                                         </div>
                                     {% endif %}
@@ -612,7 +632,7 @@
                                 </div>
                             </div>
                             -->
-                            <p class="product-des">{{ product.unit }}</p>
+                            <p class="product-des">{{ product.note }}</p>
                             <!--
                             <div class="product__details-color d-sm-flex align-items-center mb-25">
                                 <span>Color:</span>
@@ -626,8 +646,9 @@
                             </div>
                             -->
                             <!-- сделать форму для выбора размера разные для обуви и одежды + отображение в корзине-->
+                            <!--
                             <div class="product__details-size d-sm-flex align-items-center mb-30">
-                                <span>Size: </span>
+                                <span>Размер: </span>
                                 <ul class="mr-30">
                                     <li>
                                         <a href="#">XS</a>
@@ -653,6 +674,7 @@
                                 </ul>
                                 <button type="button" class="product-size-guide-btn float-sm-end" data-bs-toggle="modal" data-bs-target="#productSizeModal">Size Guide</button>
                             </div>
+                            -->
                             <div class="product__details-action">
                                 <form method="post" action="{% url 'add_item_to_cart' product.pk %}">
                                     <div class="product__details-quantity d-sm-flex align-items-center">
@@ -663,6 +685,46 @@
                                                        required id = "id_quantity"/>
                                             </div>
                                         </div>
+                                        {% if product.category == 'clothes' %}
+                                            <div class="product-size mb-20 mr-15">
+                                                <div class="size-select">
+                                                    <label>Размер</label>
+                                                     <select name="size" required id="id_size"/>
+                                                           <option value="XS">XS</option>
+                                                           <option value="S">S</option>
+                                                           <option value="M">M</option>
+                                                           <option value="L">L</option>
+                                                           <option value="XL">XL</option>
+                                                           <option value="2XL">2XL</option>
+                                                           <option value="3XL">3XL</option>
+                                                     </select>
+                                                </div>
+                                            </div>
+                                        {% elif product.category == 'shoes' %}
+                                            <div class="product-size mb-20 mr-15">
+                                                <div class="size-select">
+                                                    <label>Размер</label>
+                                                     <select name="size" required id="id_size"/>
+                                                           <option value="37">37</option>
+                                                           <option value="38">38</option>
+                                                           <option value="39">39</option>
+                                                           <option value="41">40</option>
+                                                           <option value="42">42</option>
+                                                           <option value="43">43</option>
+                                                           <option value="44">44</option>
+                                                     </select>
+                                                </div>
+                                            </div>
+                                        {% elif product.category == 'accessories'%}
+                                            <div class="product-size mb-20 mr-15">
+                                                <div class="size-select">
+                                                    <label>Размер</label>
+                                                     <select name="size" required id="id_size"/>
+                                                           <option value="one_size">one_size</option>
+                                                     </select>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                         <div class="product-add-cart mb-20">
                                             <button class="s-btn s-btn-2 s-btn-big" type="submit">add to cart</button>
                                         </div>
@@ -685,12 +747,13 @@
                                 <ul>
                                     <li>
                                         <div class="product-availibility">
-                                            <span>Availability</span>
+                                            <span>Наличие</span>
                                             <p>
-                                                <span>In Stock</span>
+                                                <span>в наличии</span>
                                             </p>
                                         </div>
                                     </li>
+                                    <!--
                                     <li>
                                         <div class="product-sku">
                                             <span>Sku:</span>
@@ -699,16 +762,18 @@
                                             </p>
                                         </div>
                                     </li>
+                                    -->
                                     <li>
                                         <div class="product-sku">
-                                            <span>Categories:</span>
+                                            <span>Категории:</span>
                                             <p>
-                                                <a href="#">Lighting,</a>
-                                                <a href="#">Lamp,</a>
-                                                <a href="#">Decor</a>
+                                                <a href="#">{{ product.category }}, </a>
+                                                <a href="#">{{ product.product_type }}, </a>
+                                                <a href="#">{{ product.brand }}</a>
                                             </p>
                                         </div>
                                     </li>
+                                    <!--
                                     <li>
                                         <div class="product-sku">
                                             <span>Tags:</span>
@@ -720,6 +785,7 @@
                                             </p>
                                         </div>
                                     </li>
+                                    -->
                                 </ul>
                             </div>
                             <div class="product__details-social d-sm-flex align-items-center">

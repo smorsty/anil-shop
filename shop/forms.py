@@ -1,6 +1,4 @@
 from django import forms
-
-
 from shop.models import OrderItem
 
 
@@ -10,7 +8,11 @@ class AddQuantityForm(forms.ModelForm):
         fields = ['quantity']
 
 
-# form for size field here
+class PickSizeForm(forms.ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = ['size']
+
 #blank=True, null=True)
 
 class CheckoutForm(forms.Form):

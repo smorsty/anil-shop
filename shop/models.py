@@ -14,16 +14,48 @@ CATEGORY_CHOICE = (
     ('accessories', 'ACCESSORIES'),
 )
 PRODUCT_TYPE_CHOICE = (
-    ('t-shirt', 'T-SHIRT'),
-    ('sweater', 'SWEATER'),
-    ('shirt', 'SHIRT'),
-    ('trousers', 'TROUSERS'),
-    ('jeans', 'JEANS'),
-    ('outerwear', 'OUTERWEAR'),
-    ('sneakers', 'SNEAKERS'),
-    ('boots', 'BOOTS'),
-    ('flip_flops', 'FLIP_FLOPS'),
-    ('accessories', 'ACCESSORIES'),
+    ('Clothes',
+     (
+        ('t-shirt', 'T-SHIRT'),
+        ('shirt', 'SHIRT'),
+        ('polo', 'POLO'),
+        ('sweater', 'SWEATER'),
+        ('hoodie', 'HOODIE'),
+        ('turtleneck', 'TURTLENECK'),#водолазки
+        ('Longs-Leeve', 'LONGSLEEVE'),
+
+        ('shorts', 'SHORTS'),
+        ('trousers', 'TROUSERS'),
+        ('jeans', 'JEANS'),
+
+        ('bomber', 'BOMBER'),
+        ('jacket', 'JACKET'),
+        ('vest', 'VEST'),#жилеты
+        ('coat', 'COAT'),
+        ('park', 'park'),
+        ('down jacket', 'DOWN JACKET'),#пуховик
+     )
+    ),
+    ('Shoes',
+     (
+        ('sneakers', 'SNEAKERS'),
+        ('boots', 'BOOTS'),
+        ('flip_flops', 'FLIP_FLOPS'),
+        ('sandals', 'SANDALS'),
+
+     )
+     ),
+    ('Accessories',
+     (
+        ('accessories', 'ACCESSORIES'),
+     )
+     ),
+    ('technique',
+     (
+         ('dyson', 'DYSON'),
+
+     )
+    ),
 )
 
 
@@ -107,21 +139,22 @@ class Order(models.Model):
                                     status=Order.STATUS_CART
                                     ).first()
 
-        #if cart and (timezone.now() - cart.creation_time).days > 7:
-         #   cart.delete()
-          #  cart = None
+
+        if cart and (timezone.now() - cart.creation_time).days > 7:
+            cart.delete()
+            cart = None
 
         if not cart:
             cart = Order.objects.create(user=user,
                                         status=Order.STATUS_CART,
                                         amount=0)
+
         return cart
 
     def get_amount(self):
         amount = Decimal(0)
         for item in self.orderitem_set.all():
             amount += item.amount
-
         return amount
 
     def make_order(self):
@@ -144,8 +177,13 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=20, decimal_places=0)
-    discount = models.DecimalField(max_digits=20, decimal_places=0, default=0)
-    # тут дисконт не нужен сделал в продукте, чтобы сразу через админку ставить
+    #discount = models.DecimalField(max_digits=20, decimal_places=0, default=0)
+    size = models.CharField(max_length=10, default='')
+    #clothes_size = models.CharField(max_length=255, choices=SIZE_CLOTHES_CHOICE, default='M',
+     #                           verbose_name='clothes_size', blank=True, null=True)
+    #shoes_size = models.CharField(max_length=255, choices=SIZE_SHOES_CHOICE, default='41',
+     #                           verbose_name='shoes_size', blank=True, null=True)
+    # тут дисконт не нужен, сделал в продукте, чтобы сразу через админку ставить
     # size field with choise
 
     class Meta:
@@ -156,8 +194,9 @@ class OrderItem(models.Model):
 
     @property
     def amount(self):
-        return self.quantity * (self.price - ((self.discount / 100) * self.price))
+        return self.quantity * self.price
         # discount - это проценты
+        #можно тоже удалить вроде не использую
 
 
 
