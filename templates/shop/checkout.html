@@ -720,26 +720,32 @@
                                              </tr>
                                              <!-- если надо будет, то надо делать форму для этого как с количеством-->
                                              <tr class="shipping">
-                                                   <th>Shipping</th>
+                                                   <th>Условия доставки</th>
                                                    <td>
-                                                      <ul>
-                                                         <li>
-                                                               <input type="radio" name="shipping" />
-                                                               <label>
-                                                                  Flat Rate: <span class="amount">$7.00</span>
-                                                               </label>
-                                                         </li>
-                                                         <li>
-                                                               <input type="radio" name="shipping"/>
-                                                               <label>Free Shipping:</label>
-                                                         </li>
-                                                      </ul>
+                                                       <label>
+                                                           {% if cart.delivery > 0%}
+                                                                <h6><strong>
+                                                                   Платная доставка: 1.000₽
+                                                                </strong></h6>
+                                                           {% else %}
+                                                                Платная доставка: 1.000₽
+                                                           {% endif %}
+                                                       </label>
+                                                       <label>
+                                                           {% if cart.delivery == 0 %}
+                                                                <h6><strong>
+                                                                   Бесплатная доставака от 7.000₽
+                                                                </strong></h6>
+                                                           {% else %}
+                                                                Бесплатная доставака от 7.000₽
+                                                           {% endif %}
+                                                       </label>
                                                    </td>
                                              </tr>
                                              <tr class="order-total">
                                                    <th>Сумма заказа</th>
                                                    <td>
-                                                       <li><span>{{ cart.amount }} ₽</span></li>
+                                                       <li><span>{{ cart.total }} ₽</span></li>
                                                    </td>
                                              </tr>
                                           </tfoot>

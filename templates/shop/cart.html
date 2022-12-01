@@ -545,48 +545,46 @@
                             </thead>
                             <tbody>
                                 {% for item in items %}
-                                    {% if item.product.name != 'default' %}
-                                        <tr>
-                                            <td class="product-thumb">
-                                                <a href="{% url 'shop/product_details' item.product.pk %}">
-                                                    <img src="{{ item.product.image.url }}" height="100px" width="4000px">
-                                                </a>
-                                            </td>
-                                            <td class="product-name">
-                                                <a href="{% url 'shop/product_details' item.product.pk %}">
-                                                    <b>{{ item.product.name }}</b>
-                                                </a>
-                                            </td>
-                                            <td class="product-size">{{ item.size }}</td>
-                                            <td class="product-price"><span class="amount">{{ item.price }} ₽</span></td>
-                                            <!--
-                                            <td class="quantity">
-                                                <div class="product-quantity mb-20 mr-15">
-                                                    <div class="cart-plus-minus">
-                                                        <input type="number" name="quantity" value="1" min="1"
-                                                               required id = "id_quantity"/>
-                                                    </div>
+                                    <tr>
+                                        <td class="product-thumb">
+                                            <a href="{% url 'shop/product_details' item.product.pk %}">
+                                                <img src="{{ item.product.image.url }}" height="200px">
+                                            </a>
+                                        </td>
+                                        <td class="product-name">
+                                            <a href="{% url 'shop/product_details' item.product.pk %}">
+                                                <b>{{ item.product.name }}</b>
+                                            </a>
+                                        </td>
+                                        <td class="product-size">{{ item.size }}</td>
+                                        <td class="product-price"><span class="amount">{{ item.price }} ₽</span></td>
+                                        <!--
+                                        <td class="quantity">
+                                            <div class="product-quantity mb-20 mr-15">
+                                                <div class="cart-plus-minus">
+                                                    <input type="number" name="quantity" value="1" min="1"
+                                                           required id = "id_quantity"/>
                                                 </div>
-                                            </td>
-                                            -->
-                                            <td class="product-quantity">{{ item.quantity }}</td>
-                                            <!--посчитать итог, умножить price на quantity, это равно amount -->
-                                            <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
-                                            <td class="product-remove">
-                                                <div class="col-12 col-md-1 item">
-                                                    <form method="post" action="{% url 'cart_delete_item' item.pk %}">
-                                                        {% csrf_token %}
-                                                        <!--
-                                                        <script>
-                                                            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-                                                        </script>
-                                                        не помогло (( -->
-                                                        <button type="submit" class="fa fa-times" style="color: black"></button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
+                                            </div>
+                                        </td>
+                                        -->
+                                        <td class="product-quantity">{{ item.quantity }}</td>
+                                        <!--посчитать итог, умножить price на quantity, это равно amount -->
+                                        <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
+                                        <td class="product-remove">
+                                            <div class="col-12 col-md-1 item">
+                                                <form method="post" action="{% url 'cart_delete_item' item.pk %}">
+                                                    {% csrf_token %}
+                                                    <!--
+                                                    <script>
+                                                        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                                                    </script>
+                                                    не помогло (( -->
+                                                    <button type="submit" class="fa fa-times" style="color: black"></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

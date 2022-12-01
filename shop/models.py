@@ -123,6 +123,8 @@ class Order(models.Model):
     # items = models.ManyToManyField(OrderItem, related_name='orders')
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=STATUS_CART)
     amount = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
+    delivery = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
+    total = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     payment = models.ForeignKey(Payment, on_delete=models.PROTECT, blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
@@ -131,7 +133,11 @@ class Order(models.Model):
         ordering = ['pk']
 
     def __str__(self):
-        return f'{self.user} - {self.amount} - {self.status}'
+        return f'{self.user} - {self.total} - {self.status}'
+
+    @property
+    def total(self):
+        return self.amount + self.delivery
 
     @staticmethod
     def get_cart(user: User):
@@ -155,6 +161,11 @@ class Order(models.Model):
         amount = Decimal(0)
         for item in self.orderitem_set.all():
             amount += item.amount
+        if amount < 7000:
+            self.delivery = 1000
+        else:
+            self.delivery = 0
+
         return amount
 
     def make_order(self):
@@ -195,12 +206,8 @@ class OrderItem(models.Model):
     @property
     def amount(self):
         return self.quantity * self.price
-        # discount - это проценты
-        #можно тоже удалить вроде не использую
 
 
-
-# don't used
 
 @transaction.atomic()
 def auto_payment_unpaid_orders(user: User):
