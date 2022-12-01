@@ -1,15 +1,13 @@
-import smtplib
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView
-from django.shortcuts import redirect, render
 from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm
 from shop.models import Product, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 import smtplib
+from email.mime.text import MIMEText
 
 
 def cart(request):
@@ -109,17 +107,14 @@ def checkout(request):
         }
     elif request.method == 'POST':
         #settings
-        my_sender = 'mr.olegron@mail.ru' #main address of our shop
+        my_sender = 'demon.am@bk.ru' #main address of our shop
         my_password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
         # по идее не нужно я же не буду со своей почты кидать ничего))
         sender = 'anil_shop@mail.ru'
         password = 'mYcFSd1za2qVh3zGXxzM'
-        my_recipient = 'mr.olegron@mail.ru' #main address of our shop (or manager): anil.com smt like this
-        recipient = 'anil_shop@mail.ru'
-        recipient2 = 'demon.am@bk.ru'#cope for me)
-        recipient3 = request.user.email  # get users email, for send him a mail with order_information
-        server = smtplib.SMTP("smtp.mail.ru", 2525)
-        server.starttls()
+        my_recipient = 'diamond.coin@bk.ru' #copy for me)
+        recipient_shop = 'anil_shop@mail.ru'
+        recipient_user = request.user.email  # get users email, for send him a mail with order_information
 
         # если метод POST, проверим форму и отправим письмо
         form = CheckoutForm(request.POST)
@@ -148,16 +143,18 @@ def checkout(request):
             for item in items:
                 out += str(item) + ' size: ' + str(item.size) + ' price: ' + str(item.price) + ' quantity: ' + str(item.quantity) + '\n'
             out += '\n' + '\n' + '\n' + str(comment)
-                # добавить размер еще, сначал просто в модель товара и сюда уже
-            #sending email по идее не надо ничего проверять, просто отправлять, даннные всегда одни
+
+            msg = MIMEText(out, 'plain', 'utf-8')
             try:
+                server = smtplib.SMTP("smtp.mail.ru", 2525)
+                server.starttls()
                 server.login(sender, password)
-                #server.sendmail(sender, recipient, out)
-                #server.sendmail(sender, recipient2, out)
-                server.sendmail(sender, my_recipient, out)
+
+                server.sendmail(sender, my_recipient, msg.as_string())
                 #server.sendmail(sender, recipient3, out) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
+            # try/except можно не проверять, все работает
             cart.make_order()
             return redirect('index')
     else:

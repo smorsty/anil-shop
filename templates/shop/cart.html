@@ -572,17 +572,10 @@
                                         <!--посчитать итог, умножить price на quantity, это равно amount -->
                                         <td class="product-subtotal"><span class="amount">{{ item.amount }} ₽</span></td>
                                         <td class="product-remove">
-                                            <div class="col-12 col-md-1 item">
-                                                <form method="post" action="{% url 'cart_delete_item' item.pk %}">
-                                                    {% csrf_token %}
-                                                    <!--
-                                                    <script>
-                                                        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-                                                    </script>
-                                                    не помогло (( -->
-                                                    <button type="submit" class="fa fa-times" style="color: black"></button>
-                                                </form>
-                                            </div>
+                                            <form method="post" action="{% url 'cart_delete_item' item.pk %}">
+                                                {% csrf_token %}
+                                                <button type="submit"><i class="fa fa-times"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 {% endfor %}
