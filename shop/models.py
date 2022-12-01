@@ -134,7 +134,7 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.user} - {self.total} - {self.status}'
-
+    
     @property
     def total(self):
         return self.amount + self.delivery
