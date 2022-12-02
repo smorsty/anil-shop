@@ -109,16 +109,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-"""
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 2525
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'mr.olegron@mail.ru'
-EMAIL_HOST_PASSWORD = 'y8nEPsm64q6JVUTwT1gW'
-"""
+shop_sender = 'anil_shop@mail.ru'
+shop_password = 'mYcFSd1za2qVh3zGXxzM'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

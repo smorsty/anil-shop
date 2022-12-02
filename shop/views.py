@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponse, HttpResponseRedirect
 import smtplib
 from email.mime.text import MIMEText
+from anil_shop.settings import shop_sender, shop_password
 
 
 def cart(request):
@@ -107,14 +108,14 @@ def checkout(request):
         }
     elif request.method == 'POST':
         #settings
-        my_sender = 'demon.am@bk.ru' #main address of our shop
+        my_recipient = 'demon.am@bk.ru' #main address of our shop
         my_password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
         # по идее не нужно я же не буду со своей почты кидать ничего))
-        sender = 'anil_shop@mail.ru'
-        password = 'mYcFSd1za2qVh3zGXxzM'
-        my_recipient = 'diamond.coin@bk.ru' #copy for me)
-        recipient_shop = 'anil_shop@mail.ru'
-        recipient_user = request.user.email  # get users email, for send him a mail with order_information
+        sender = shop_sender
+        password = shop_password
+        my_recipient = 'diamond.coin@bk.ru'
+        shop_recipient = 'anil_shop@mail.ru'
+        user_recipient = request.user.email # get users email, for send him a mail with order_information
 
         # если метод POST, проверим форму и отправим письмо
         form = CheckoutForm(request.POST)
@@ -151,7 +152,8 @@ def checkout(request):
                 server.login(sender, password)
 
                 server.sendmail(sender, my_recipient, msg.as_string())
-                #server.sendmail(sender, recipient3, out) #copy for user, it can be diffrent messages for all 3 recipients
+                #server.sendmail(sender, shop_recipient, msg.as_string())
+                server.sendmail(sender, user_recipient, msg.as_string()) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
             # try/except можно не проверять, все работает
