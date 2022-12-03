@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView
-from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm
+from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm, ProductPriceFilterFrom
 from shop.models import Product, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -18,23 +18,34 @@ def wishlist(request):
     return render(request, "shop/wishlist.html")
 
 """
-def shop(request):
-    products = Product.objects.all()
-    return render(request, 'shop/shop.html', {'object_list': products})
-"""
-
 class ProductsListView(ListView):
     model = Product
     template_name = 'shop/shop.html'
+"""
+
+def shop(request):
+    products = Product.objects.all()
+    form = ProductPriceFilterFrom(request.GET)
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+
+        if form.cleaned_data['max_price']:
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+
+        if form.cleaned_data['ordering']:
+            products = products.order_by(form.cleaned_data['ordering'])
+
+    context = {
+        'object_list': products,
+        'form': form,
+    }
+    return render(request, 'shop/shop.html', context)
 
 
 class ProductsDetailView(DetailView):
     model = Product
     template_name = 'shop/product_details.html'
-
-
-#def get_object_or_404(Product, pk):
- #   pass
 
 
 @login_required(login_url=reverse_lazy('authentication/login'))

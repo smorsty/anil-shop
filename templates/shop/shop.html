@@ -137,10 +137,10 @@
                                                 <a href="{% url 'index' %}">Home</a>
                                             </li>
                                             <li class="static">
-                                                <a href="{% url 'shop/shop' %}">Clothing<i class="icon-arrow-down"></i></a>
+                                                <a href="{% url 'shop/shop' %}">Мужское<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <a href="{% url 'shop/shop' %}">Бренды</a>
                                                        <ul class="has-dropdown">
                                                            <li><a href="{% url 'shop/shop' %}">Футболки</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Худи и Свитшоты</a></li>
@@ -151,7 +151,7 @@
                                                        </ul>
                                                    </li>
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <a href="{% url 'shop/shop' %}">Категория</a>
                                                        <ul class="has-dropdown">
                                                            <li><a href="{% url 'shop/shop' %}">Nike</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
@@ -182,10 +182,10 @@
                                                 </ul>
                                              </li>
                                             <li class="static">
-                                                <a href="{% url 'shop/shop' %}">Shoes<i class="icon-arrow-down"></i></a>
+                                                <a href="{% url 'shop/shop' %}">Женское<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <a href="{% url 'shop/shop' %}">Бренды</a>
                                                        <ul class="has-dropdown">
                                                            <li><a href="{% url 'shop/shop' %}">Кроссовки</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Ботинки</a></li>
@@ -196,7 +196,7 @@
                                                        </ul>
                                                    </li>
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <a href="{% url 'shop/shop' %}">Категории</a>
                                                        <ul class="has-dropdown">
                                                            <li><a href="{% url 'shop/shop' %}">Nike</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
@@ -224,7 +224,7 @@
                                                 </ul>
                                              </li>
                                             <li class="static">
-                                                <a href="{% url 'shop/shop' %}">Accessories<i class="icon-arrow-down"></i></a>
+                                                <a href="{% url 'shop/shop' %}">Аксессуары<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
                                                        <a href="{% url 'shop/shop' %}">Категория</a>
@@ -266,7 +266,7 @@
                                                        </div>
                                                    </li>
                                                 </ul>
-                                            </li>
+                                             </li>
                                             <!--<li><a href="contact.html">Contact Us</a></li> -->
                                             {% if user.is_authenticated %}
                                                 <!-- можно вообще не писать имя пользователя (почту) просто кнопки менять-->
@@ -536,58 +536,91 @@
                                     <form action="#">
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-1" name="cat-item">
-                                            <label for="cat-item-1">Clothing & Apparel <span>(12)</span></label>
+                                            <label for="cat-item-1">Футболки</label>
+                                            <!--<label for="cat-item-2">Рубашки<span>(60)</span></label>-->
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-2" name="cat-item">
-                                            <label for="cat-item-2">Consumer Electrics <span>(60)</span></label>
+                                            <label for="cat-item-2">Рубашки</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-3" name="cat-item">
-                                            <label for="cat-item-3">Computers & Technologies <span>(41)</span></label>
+                                            <label for="cat-item-3">Поло</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-4" name="cat-item">
-                                            <label for="cat-item-4">Phones & Accessories <span>(28)</span></label>
+                                            <label for="cat-item-4">Свитера</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-5" name="cat-item">
-                                            <label for="cat-item-5">Babies & Moms <span>(21)</span></label>
+                                            <label for="cat-item-5">Худи и Кофты</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-7" name="cat-item">
-                                            <label for="cat-item-7">Books & Office <span>(62)</span></label>
+                                            <label for="cat-item-7">Водолазки</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-8" name="cat-item">
-                                            <label for="cat-item-8">Sport & Outdoo <span>(22)</span></label>
+                                            <label for="cat-item-8">Лонгсливы</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-9" name="cat-item">
-                                            <label for="cat-item-9">Chairs & Stools <span>(20)</span></label>
+                                            <label for="cat-item-9">Штаны и Брюки</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-10" name="cat-item">
-                                            <label for="cat-item-10">Furniture & Acessories <span>(06)</span></label>
+                                            <label for="cat-item-10">Джинсы</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-11" name="cat-item">
-                                            <label for="cat-item-11">Kitchen & Tableware <span>(30)</span></label>
+                                            <label for="cat-item-11">Шорты</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-12" name="cat-item">
-                                            <label for="cat-item-12">Lighting <span>(30)</span></label>
+                                            <label for="cat-item-12">Бомберы</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-13" name="cat-item">
-                                            <label for="cat-item-13">Armchairs & Chaises <span>(30)</span></label>
+                                            <label for="cat-item-13">Пуховики</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-14" name="cat-item">
+                                            <label for="cat-item-13">Пальто и Парки</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-15" name="cat-item">
+                                            <label for="cat-item-13">Ботинки</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-16" name="cat-item">
+                                            <label for="cat-item-13">Кроссовки и Кеды</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-17" name="cat-item">
+                                            <label for="cat-item-13">Шлепки и Сандали</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-18" name="cat-item">
+                                            <label for="cat-item-13">Акссесуары</label>
+                                        </div>
+                                        <div class="single-widget-category">
+                                            <input type="checkbox" id="cat-item-19" name="cat-item">
+                                            <label for="cat-item-13">Техника</label>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                            <!--#######################################################################-->
                             <div class="single-widget mb-50">
-                                <h4 class="widget-title title-price-space">Filter By Price</h4>
-                                <form action="#">
+                                <h4 class="widget-title title-price-space">Фильтр по Цене</h4>
+                                <form action="#" method="get">
+                                    {{ form.as_p }}
+                                    <div class="col-3">
+                                        <div class="text-end">
+                                            <input type="submit" value="Применить">
+                                        </div>
+                                    </div>
+                                    <!--
                                     <div class="ui-price-slider mb-40">
                                         <div class="slider-range">
                                             <div id="slider-range" class="mb-20"></div>
@@ -606,6 +639,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    -->
                                 </form>
                             </div>
                             <!--
@@ -641,6 +675,7 @@
                                 </div>
                             </div>
                             -->
+                            <!--
                             <div class="single-widget pb-50 mb-50">
                                 <h4 class="widget-title">Filter By Size</h4>
                                 <div class="widget-category-list scroll-box-default">
@@ -672,6 +707,7 @@
                                     </form>
                                 </div>
                             </div>
+                            -->
                             <!--
                             <div class="single-widget pb-50 mb-50">
                                 <h4 class="widget-title">Product tags</h4>
@@ -736,8 +772,8 @@
                                 <div class="tab-pane fade  show active" id="tab1">
                                     <div class="row pb-20">
                                         {% for product in object_list %}
+
                                         <!-- начало оформления ячейки -->
-                                            {% if product.name != 'default' %}
                                                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6">
                                                     <div class="single-product mb-15 wow fadeInUp" data-wow-delay=".3s">
                                                         <div class="product-thumb">
@@ -844,7 +880,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {% endif %}
+
                                         {% endfor %}
                                     </div>
                                 </div>

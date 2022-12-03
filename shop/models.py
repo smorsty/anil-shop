@@ -13,6 +13,7 @@ CATEGORY_CHOICE = (
     ('shoes', 'SHOES'),
     ('accessories', 'ACCESSORIES'),
 )
+
 PRODUCT_TYPE_CHOICE = (
     ('Clothes',
      (
@@ -58,27 +59,63 @@ PRODUCT_TYPE_CHOICE = (
     ),
 )
 
+GENDER_CHOICE = (
+    ('male', 'MALE'),
+    ('female', 'FEMALE'),
+)
+
+BRAND_CHOICE = (
+    ('Nike', 'NIKE'),
+    ('Adidas', 'ADIDAS'),
+    ('Hugo Boss', 'Hugo Boss'),
+    ('Zara', 'Zara'),
+    ('Tommy Hilfiger', 'Tommy Hilfiger'),
+    ('Calvin Klein', 'Calvin Klein'),
+    ('Tommy jeans', 'Tommy jeans'),
+    ('Calvin Klein Jeans', 'Calvin Klein Jeans'),
+    ('Marco di radi', 'Marco di radi'),
+    ('Polo Assn', 'Polo Assn'),
+    ('Reebok', 'Reebok'),
+    ('Polo Ralph Lauren', 'Polo Ralph Lauren'),
+    ('Marco polo', 'Marco polo'),
+    ('New Balance', 'New Balance'),
+    ('Timberland', 'Timberland'),
+    ('Nike SB', 'Nike SB'),
+    ('Adidas Original', 'Adidas Original'),
+    ('Dyson', 'Dyson'),
+    ('H&M', 'H&M'),
+    ('Massimo Dutti', 'Massimo Dutti'),
+    ('Cos', 'Cos'),
+    ('Jordan', 'Jordan'),
+    ('Levis', 'Levis'),
+    ('Sporty&rich', 'Sporty&rich'),
+    ('Mango', 'Mango'),
+    ('UGG', 'UGG'),
+    ('Oysho', 'Oysho'),
+    ('Converse', 'Converse'),
+    ('Puma', 'Puma'),
+    ('Crocs', 'Crocs'),
+    ('The North Face', 'The North Face'),
+    ("Victoria Secret", "Victoria Secret"),
+    ("The Other Stories", "The Other Stories"),
+)
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='product_name', blank=True, null=True)
     code = models.CharField(max_length=255, verbose_name='product_code', blank=True, null=True)
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICE, default='shoes', verbose_name='product_category')
     product_type = models.CharField(max_length=255, choices=PRODUCT_TYPE_CHOICE, default='sneakers', verbose_name='product_type')
-    brand = models.CharField(max_length=255, verbose_name='product_brand', blank=True, null=True)
+    brand = models.CharField(max_length=255, choices=BRAND_CHOICE, default='Nike', verbose_name='product_brand')
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICE, default='male', verbose_name='product_gender')
     price = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
     old_price = models.DecimalField(max_digits=20, decimal_places=0, blank=True, null=True)
     # если есть акция то норм цену в price, а старую в old_price, если нет скидки то указывать одинаковую в две переменные
-    unit = models.CharField(max_length=255, blank=True, null=True)#нахуй не нужное поле по идее
     image = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image2 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image3 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image4 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     image5 = models.ImageField(upload_to='shop/images', blank=True, null=True)
     note = models.TextField(blank=True, null=True)#comment
-    #для бренда сделать тоже tuple и default установить
-    #возможно нужна еще дисконт цена
-    #size = models.CharField(max_length=255, verbose_name='product_name') == [XS, S, M, L, XL, XXL]
-    # размер нужен в Order.Item как и quantity сделать
 
 
     class Meta:
