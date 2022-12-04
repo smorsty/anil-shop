@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="site.webmanifest">
+    <!--<link rel="manifest" href="site.webmanifest">-->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/icon.png' %}">
 
    <!-- CSS here -->
@@ -355,7 +355,7 @@
                     <div class="offcanvas__wrapper">
                         <div class="offcanvas__top d-flex align-items-center mb-60 justify-content-between">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="{% static url 'index' %}">
                                    <img src="assets/img/logo/logo-black.png" alt="logo">
                                 </a>
                              </div>
@@ -374,7 +374,7 @@
                               <div class="mobile-menu fix"></div>
                            </div>
                            <div class="offcanvas__action mb-15">
-                              <a href="login.html">Login</a>
+                              <a href="{% static url 'authentication/login' %}">Login</a>
                            </div>
                            <div class="offcanvas__action mb-15 ">
                               <a href="wishlist.html" class="has-tag">
@@ -438,13 +438,14 @@
                 <div class="breadcrumb-list">
                     <a href="{% url 'index' %}">Home</a>
                     <a href="{% url 'shop/shop' %}">Shop</a>
-                    {% if category == 'male' %}
+                    {% if gender == 'male' %}
                         <a href="{% url 'shop/shop/men' %}">men</a>
-                    {% elif category == 'female' %}
+                    {% elif gender == 'female' %}
                         <a href="{% url 'shop/shop/women' %}">women</a>
                     {% else %}
                         <a href="{% url 'shop/shop/accessories' %}">accessories</a>
                     {% endif %}
+                    <a href="#">{{ category }}</a>
                 </div>
             </div>
         </div>
@@ -457,13 +458,21 @@
                     <div class="col-xxl-3 col-xl-3 col-lg-4">
                         <div class="shop-sidebar-area pt-7 pr-60">
                             <div class="single-widget pb-50 mb-50">
-                                <h4 class="widget-title">Product Categories</h4>
+                                <h4 class="widget-title">Категория</h4>
                                 <div class="widget-category-list">
-                                    <form action="">
+                                    <form action="#" method="get">
+                                        {{ form_product_type.as_p }}
+                                        <div class="col-3">
+                                            <div class="product-add-cart mb-20">
+                                                <button class="s-btn s-btn-2 s-btn-small" type="submit">применить</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!--<form action="">
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-1" name="cat-item">
                                             <label for="cat-item-1">Футболки</label>
-                                            <!--<label for="cat-item-2">Рубашки<span>(60)</span></label>-->
+                                            <label for="cat-item-2">Рубашки<span>(60)</span></label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-2" name="cat-item">
@@ -511,29 +520,29 @@
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-14" name="cat-item">
-                                            <label for="cat-item-13">Пальто и Парки</label>
+                                            <label for="cat-item-14">Пальто и Парки</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-15" name="cat-item">
-                                            <label for="cat-item-13">Ботинки</label>
+                                            <label for="cat-item-15">Ботинки</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-16" name="cat-item">
-                                            <label for="cat-item-13">Кроссовки и Кеды</label>
+                                            <label for="cat-item-16">Кроссовки и Кеды</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-17" name="cat-item">
-                                            <label for="cat-item-13">Шлепки и Сандали</label>
+                                            <label for="cat-item-17">Шлепки и Сандали</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-18" name="cat-item">
-                                            <label for="cat-item-13">Акссесуары</label>
+                                            <label for="cat-item-18">Акссесуары</label>
                                         </div>
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-19" name="cat-item">
-                                            <label for="cat-item-13">Техника</label>
+                                            <label for="cat-item-19">Техника</label>
                                         </div>
-                                    </form>
+                                    </form> -->
                                 </div>
                             </div>
                             <!--#######################################################################-->

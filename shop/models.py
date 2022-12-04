@@ -8,6 +8,8 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 
+
+
 CATEGORY_CHOICE = (
     ('clothes', 'CLOTHES'),
     ('shoes', 'SHOES'),
@@ -28,13 +30,16 @@ PRODUCT_TYPE_CHOICE = (
         ('shorts', 'SHORTS'),
         ('trousers', 'TROUSERS'),
         ('jeans', 'JEANS'),
+        ('sport_trousers', 'SPORT_TROUSERS'),
 
         ('bomber', 'BOMBER'),
         ('jacket', 'JACKET'),
         ('vest', 'VEST'),#жилеты
         ('coat', 'COAT'),
-        ('park', 'park'),
+        ('park', 'PARK'),
         ('down jacket', 'DOWN JACKET'),#пуховик
+
+        ('sport_costumes', 'SPORT_COSTUMES'),
      )
     ),
     ('Shoes',
@@ -99,6 +104,7 @@ BRAND_CHOICE = (
     ("Victoria Secret", "Victoria Secret"),
     ("The Other Stories", "The Other Stories"),
 )
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='product_name', blank=True, null=True)

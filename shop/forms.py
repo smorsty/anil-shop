@@ -1,6 +1,53 @@
 from django import forms
 from shop.models import OrderItem
 
+PRODUCT_TYPE_CHOICE = (
+    ('Одежда',
+     (
+        ('t-shirt', 'Футболки'),
+        ('shirt', 'Рубашки'),
+        ('polo', 'Поло'),
+        ('sweater', 'Свитера'),
+        ('hoodie', 'Худи'),
+        ('turtleneck', 'Водолазки'),
+        ('Longs-Leeve', 'Лонгсливы'),
+
+        ('shorts', 'Шорты'),
+        ('trousers', 'Брюки'),
+        ('jeans', 'Джинсы'),
+        ('sport_trousers', 'Спортивные штаны'),
+
+        ('bomber', 'Бомберы'),
+        ('jacket', 'Куртки'),
+        ('vest', 'Жилетки'),
+        ('coat', 'Пальто'),
+        ('park', 'Парки'),
+        ('down jacket', 'Пуховики'),
+
+        ('sport_costumes', 'SPORT_COSTUMES'),
+     )
+    ),
+    ('Обувь',
+     (
+        ('sneakers', 'Кроссовки'),
+        ('boots', 'Ботинки'),
+        ('flip_flops', 'Тапки'),
+        ('sandals', 'Сандали'),
+
+     )
+     ),
+    ('Аксессуары',
+     (
+        ('accessories', 'Аксессуары'),
+     )
+     ),
+    ('technique',
+     (
+         ('dyson', 'DYSON'),
+
+     )
+    ),
+)
 
 class AddQuantityForm(forms.ModelForm):
     class Meta:
@@ -23,6 +70,9 @@ class ProductPriceFilterFrom(forms.Form):
     ])
 
 
+class ProductTypeFilterForm(forms.Form):
+    category = forms.ChoiceField(label="категория", required=False, choices=PRODUCT_TYPE_CHOICE)
+
 class CheckoutForm(forms.Form):
     first_name = forms.CharField(label='first_name', required=True)
     last_name = forms.CharField(label='last_name', required=True)
@@ -35,3 +85,5 @@ class CheckoutForm(forms.Form):
     comment = forms.CharField(label='comment', required=False)
     # telegram_username = forms.CharField(label='telegram_username', widget=forms.Textarea, required=True)
     # blank=True, null=True)
+
+
