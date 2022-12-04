@@ -11,14 +11,10 @@
         <!-- slider area start -->
         <section class="slider-area pb-20 p-rel">
             <div class="slider-active dot-style dot-style-1 dot-right">
-                <div class="single-slider slider-height" data-background="{% static 'img/banner/banner-2.jpg' %}">
+                <div class="single-slider slider-height" data-background="{% static '/img/index1.jpg' %}">
                 </div>
-                <div class="single-slider slider-height" data-background="{% static 'img/banner/banner-2.jpg' %}">
-                </div>
-                <div class="single-slider slider-height" data-background="{% static '/img/slider/slider-3.jpg' %}">
-                </div>
-                <div class="single-slider slider-height" data-background="{% static '/img/slider/slider-4.jpg' %}">
-                </div>
+                <!--<div class="single-slider slider-height" data-background="{% static '/img/slider/slider-4.jpg' %}">
+                </div>-->
             </div>
             <div class="slider-scroll p-abs">
                 <a href="#category-area"><i class="fal fa-angle-double-down"></i></a>
@@ -32,7 +28,7 @@
                 <div class="row row-2">
                     <div class="col-xxl-6 col-xl-6 col-md-6 col-12">
                         <div class="single-category mb-20 p-rel wow fadeInUp" data-wow-delay=".1s">
-                            <a href="{% url 'shop/shop' %}">
+                            <a href="{% url 'shop/shop/women' %}">
                                 <div class="cat-thumb fix">
                                     <img src="{% static '/img/women_collection.jpg' %}" alt="#">
                                     <!-- 930 x 900-->
@@ -60,7 +56,7 @@
                                 </a>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                <a href="{% url 'shop/shop' %}">
+                                <a href="{% url 'shop/shop/men' %}">
                                     <div class="single-category mb-20 p-rel wow fadeInUp" data-wow-delay=".6s">
                                         <div class="cat-thumb fix">
                                             <img src="{% static 'img/men_collection.jpg' %}" alt="#">

@@ -445,7 +445,6 @@
                     {% else %}
                         <a href="{% url 'shop/shop/accessories' %}">accessories</a>
                     {% endif %}
-                    <a href="#">{{ category }}</a>
                 </div>
             </div>
         </div>
@@ -458,16 +457,17 @@
                     <div class="col-xxl-3 col-xl-3 col-lg-4">
                         <div class="shop-sidebar-area pt-7 pr-60">
                             <div class="single-widget pb-50 mb-50">
-                                <h4 class="widget-title">Категория</h4>
-                                <div class="widget-category-list">
-                                    <form action="#" method="get">
-                                        {{ form_product_type.as_p }}
-                                        <div class="col-3">
-                                            <div class="product-add-cart mb-20">
-                                                <button class="s-btn s-btn-2 s-btn-small" type="submit">применить</button>
+                                {% if gender != 'accessories' %}
+                                    <h4 class="widget-title">Категория</h4>
+                                    <div class="widget-category-list">
+                                        <form action="#" method="get">
+                                            {{ form_product_type.as_p }}
+                                            <div class="col-3">
+                                                <div class="product-add-cart mb-20">
+                                                    <button class="s-btn s-btn-2 s-btn-small" type="submit">применить</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
                                     <!--<form action="">
                                         <div class="single-widget-category">
                                             <input type="checkbox" id="cat-item-1" name="cat-item">
@@ -544,6 +544,7 @@
                                         </div>
                                     </form> -->
                                 </div>
+                                {% endif %}
                             </div>
                             <!--#######################################################################-->
                             <div class="single-widget mb-50">

@@ -48,7 +48,6 @@ def shop_men(request):
     form = ProductPriceFilterFrom(request.GET)
     form_product_type = ProductTypeFilterForm(request.GET)
     gender_check = 'male'
-    category_check = 't-shirts'
 
     if form.is_valid():
         if form.cleaned_data['min_price']:
@@ -68,16 +67,17 @@ def shop_men(request):
     context = {
         'object_list': products,
         'form': form,
-        'gender': gender_check,
         'form_product_type': form_product_type,
-        'category': category_check,
+        'gender': gender_check,
+
     }
     return render(request, 'shop/shop.html', context)
 
 def shop_women(request):
     products = Product.objects.filter(gender='female')
-    category_check = 'female'
     form = ProductPriceFilterFrom(request.GET)
+    form_product_type = ProductTypeFilterForm(request.GET)
+    gender_check = 'female'
     if form.is_valid():
         if form.cleaned_data['min_price']:
             products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
@@ -88,17 +88,23 @@ def shop_women(request):
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
 
+        if form_product_type.is_valid():
+            if form_product_type.cleaned_data['category']:
+                products = products.filter(product_type=form_product_type.cleaned_data['category'])
+
     context = {
         'object_list': products,
         'form': form,
-        'category': category_check,
+        'form_product_type': form_product_type,
+        'gender': gender_check,
     }
     return render(request, 'shop/shop.html', context)
 
 def shop_accessories(request):
     products = Product.objects.filter(category='accessories')
     form = ProductPriceFilterFrom(request.GET)
-    category_check = 'accessories'
+    gender_check = 'accessories'
+
     if form.is_valid():
         if form.cleaned_data['min_price']:
             products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
@@ -112,7 +118,7 @@ def shop_accessories(request):
     context = {
         'object_list': products,
         'form': form,
-        'category': category_check,
+        'gender': gender_check,
     }
     return render(request, 'shop/shop.html', context)
 class ProductsDetailView(DetailView):
