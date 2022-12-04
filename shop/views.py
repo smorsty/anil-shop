@@ -28,10 +28,10 @@ def shop(request):
     form = ProductPriceFilterFrom(request.GET)
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -51,10 +51,10 @@ def shop_men(request):
 
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -80,10 +80,10 @@ def shop_women(request):
     gender_check = 'female'
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -107,10 +107,10 @@ def shop_accessories(request):
 
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -185,7 +185,7 @@ def make_order(request):
 
 
 def checkout(request):
-    # если метод GET, вернем форму
+    # пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ GET, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     if request.method == 'GET':
         form = CheckoutForm()
         cart = Order.get_cart(request.user)
@@ -199,14 +199,14 @@ def checkout(request):
         #settings
         my_recipient = 'demon.am@bk.ru' #main address of our shop
         my_password = "y8nEPsm64q6JVUTwT1gW" #static it's unique for every sender's email
-        # по идее не нужно я же не буду со своей почты кидать ничего))
+        # пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ))
         sender = shop_sender
         password = shop_password
         my_recipient = 'diamond.coin@bk.ru'
         shop_recipient = 'anil_shop@mail.ru'
         user_recipient = request.user.email # get users email, for send him a mail with order_information
 
-        # если метод POST, проверим форму и отправим письмо
+        # пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ POST, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         form = CheckoutForm(request.POST)
         if form.is_valid():
             #user_information
@@ -241,11 +241,11 @@ def checkout(request):
                 server.login(sender, password)
 
                 server.sendmail(sender, my_recipient, msg.as_string())
-                #server.sendmail(sender, shop_recipient, msg.as_string())
+                server.sendmail(sender, shop_recipient, msg.as_string())
                 server.sendmail(sender, user_recipient, msg.as_string()) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
-            # try/except можно не проверять, все работает
+            # try/except пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             cart.make_order()
             return redirect('index')
     else:
