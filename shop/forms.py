@@ -14,12 +14,12 @@ class PickSizeForm(forms.ModelForm):
         fields = ['size']
 
 class ProductPriceFilterFrom(forms.Form):
-    min_price = forms.IntegerField(label="min", required=False)
-    max_price = forms.IntegerField(label="max", required=False)
-    ordering = forms.ChoiceField(label="sort", required=False, choices=[
-        ["name", "alphabet"],
-        ["price", "cheap first"],
-        ["-price", "expensive first"],
+    min_price = forms.IntegerField(label="от", required=False)
+    max_price = forms.IntegerField(label="до", required=False)
+    ordering = forms.ChoiceField(label="сортировка", required=False, choices=[
+        ["name", "по умолчанию"],
+        ["price", "сначала дешевые"],
+        ["-price", "сначала дорогие"],
     ])
 
 

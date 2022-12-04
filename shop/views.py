@@ -43,6 +43,68 @@ def shop(request):
     return render(request, 'shop/shop.html', context)
 
 
+def shop_men(request):
+    products = Product.objects.filter(gender='male')
+    form = ProductPriceFilterFrom(request.GET)
+    category_check = 'male'
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+
+        if form.cleaned_data['max_price']:
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+
+        if form.cleaned_data['ordering']:
+            products = products.order_by(form.cleaned_data['ordering'])
+
+    context = {
+        'object_list': products,
+        'form': form,
+        'category': category_check,
+    }
+    return render(request, 'shop/shop.html', context)
+
+def shop_women(request):
+    products = Product.objects.filter(gender='female')
+    category_check = 'female'
+    form = ProductPriceFilterFrom(request.GET)
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+
+        if form.cleaned_data['max_price']:
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+
+        if form.cleaned_data['ordering']:
+            products = products.order_by(form.cleaned_data['ordering'])
+
+    context = {
+        'object_list': products,
+        'form': form,
+        'category': category_check,
+    }
+    return render(request, 'shop/shop.html', context)
+
+def shop_accessories(request):
+    products = Product.objects.filter(category='accessories')
+    form = ProductPriceFilterFrom(request.GET)
+    category_check = 'accessories'
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte значит больше или равно
+
+        if form.cleaned_data['max_price']:
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
+
+        if form.cleaned_data['ordering']:
+            products = products.order_by(form.cleaned_data['ordering'])
+
+    context = {
+        'object_list': products,
+        'form': form,
+        'category': category_check,
+    }
+    return render(request, 'shop/shop.html', context)
 class ProductsDetailView(DetailView):
     model = Product
     template_name = 'shop/product_details.html'
