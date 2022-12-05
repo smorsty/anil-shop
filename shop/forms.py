@@ -1,5 +1,5 @@
 from django import forms
-from shop.models import OrderItem
+from shop.models import OrderItem, Product
 
 PRODUCT_TYPE_CHOICE = (
     ('Одежда',
@@ -41,7 +41,7 @@ PRODUCT_TYPE_CHOICE = (
         ('accessories', 'Аксессуары'),
      )
      ),
-    ('technique',
+    ('Техника',
      (
          ('dyson', 'DYSON'),
 
@@ -59,6 +59,12 @@ class PickSizeForm(forms.ModelForm):
     class Meta:
         model = OrderItem
         fields = ['size']
+
+class PickTypeForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ['product_type']
 
 class ProductPriceFilterFrom(forms.Form):
     min_price = forms.IntegerField(label="от", required=False)

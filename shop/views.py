@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView
-from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm, ProductPriceFilterFrom, ProductTypeFilterForm
+from shop.forms import AddQuantityForm, CheckoutForm, PickSizeForm, ProductPriceFilterFrom, ProductTypeFilterForm, PickTypeForm
 from shop.models import Product, Order, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -28,10 +28,10 @@ def shop(request):
     form = ProductPriceFilterFrom(request.GET)
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte ������ ������ ��� �����
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte больше или равно
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte ������ ��� �����
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte меньше или равно
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -46,15 +46,15 @@ def shop(request):
 def shop_men(request):
     products = Product.objects.filter(gender='male')
     form = ProductPriceFilterFrom(request.GET)
-    form_product_type = ProductTypeFilterForm(request.GET)
+    form_product_type = ProductTypeForm(request.GET)
     gender_check = 'male'
 
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte ������ ������ ��� �����
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte ������ ��� �����
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -80,10 +80,10 @@ def shop_women(request):
     gender_check = 'female'
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte ������ ������ ��� �����
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte ������ ��� �����
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -107,10 +107,10 @@ def shop_accessories(request):
 
     if form.is_valid():
         if form.cleaned_data['min_price']:
-            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte ������ ������ ��� �����
+            products = products.filter(price__gte=form.cleaned_data['min_price'])#price__gte
 
         if form.cleaned_data['max_price']:
-            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte ������ ��� �����
+            products = products.filter(price__lte=form.cleaned_data['max_price'])#price__lte
 
         if form.cleaned_data['ordering']:
             products = products.order_by(form.cleaned_data['ordering'])
@@ -241,11 +241,11 @@ def checkout(request):
                 server.login(sender, password)
 
                 server.sendmail(sender, my_recipient, msg.as_string())
-                server.sendmail(sender, shop_recipient, msg.as_string())
-                server.sendmail(sender, user_recipient, msg.as_string()) #copy for user, it can be diffrent messages for all 3 recipients
+                #server.sendmail(sender, shop_recipient, msg.as_string())
+                #server.sendmail(sender, user_recipient, msg.as_string()) #copy for user, it can be diffrent messages for all 3 recipients
             except Exception as _ex:
                 return HttpResponse(f"{_ex}\nCheck your login or password!")
-            # try/except ����� �� ���������, ��� �������
+            # try/except можно и без них по идее
             cart.make_order()
             return redirect('index')
     else:

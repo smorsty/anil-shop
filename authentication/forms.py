@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
-    # вообще нужен email никнейм нахуй
+
     username = forms.CharField(label='Username', required=True)# name on site,
     password = forms.CharField(widget=forms.PasswordInput())
 
@@ -26,14 +26,13 @@ class LoginForm(forms.Form):
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['email'].required = True
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-input'
 
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')# username не нужен по идее
+        fields = ('username', 'password')
         widgets = {
             'password': forms.PasswordInput()
         }

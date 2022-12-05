@@ -24,9 +24,9 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = "django-insecure-w5nc95k^vxi)x%w5gw07z2_sv3wwfj-=@)k!o8+wvf#nr*n=4^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['testtest123321.pythonanywhere.com']
+ALLOWED_HOSTS = ['testtest123321.pythonanywhere.com', 'localhost']
 
 
 # Application definition
