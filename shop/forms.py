@@ -24,7 +24,7 @@ PRODUCT_TYPE_CHOICE = (
         ('park', 'Парки'),
         ('down jacket', 'Пуховики'),
 
-        ('sport_costumes', 'SPORT_COSTUMES'),
+        ('sport_costumes', 'Спортивные костюмы'),
      )
     ),
     ('Обувь',
