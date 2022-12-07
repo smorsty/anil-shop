@@ -133,93 +133,120 @@
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li>
-                                                <a href="{% url 'index' %}">Home</a>
-                                            </li>
+                                            <li><a href="{% url 'index' %}">Home</a></li>
                                             <li class="static">
                                                 <a href="{% url 'shop/shop/men' %}">Мужское<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <a href="{% url 'shop/shop/men' %}">Бренды</a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop/shop' %}">Футболки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Худи и Свитшоты</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Рубашки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Брюки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Джинсы</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Куртки</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/polo_ralph_lauren' %}">Polo Ralph Lauren</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/hugo_boss' %}">Hugo Bosss</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/tommy_hilfiger' %}">Tommy Hilfiger</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/tommy_jeans' %}">Tommy Jeans</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/marco_polo' %}">Marco Polo</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/calvin_klein' %}">Calvin Klein</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/calvin_klein' %}">Calvin Klein Jeans</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/marco_di_radi' %}">Marco Di Radi</a></li>
                                                        </ul>
                                                    </li>
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <a></a>
+                                                       <a></a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop/shop' %}">Nike</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Zara</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">H&M</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Levis</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Mango</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Converse</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Dyson</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/nike' %}">Nike</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/nike_sb' %}">Nike SB</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/adidas' %}">Adidas</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/adidas_originals' %}">Adidas Original</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/converse' %}">Converse</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/new_balance' %}">New Balance</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/reebok' %}">Reebok</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/puma' %}">Puma</a></li>
                                                        </ul>
                                                    </li>
-                                                   <li class="d-none d-lg-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="{% url 'shop/shop' %}">
-                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
-                                                       </div>
+                                                   <li class="has-dropdown">
+                                                       <a></a>
+                                                       <a></a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop/men/the_north_face' %}">The North Face</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/jordan' %}">Jordan</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/sporty_rich' %}">Spotry & Rich</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/massimo_duti' %}">Massimo Dutti</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/zara' %}">Zara</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/hm' %}">H&M</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/levis' %}">Levis</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/oysho' %}">Oysho</a></li>
+                                                       </ul>
                                                    </li>
-                                                   <li class="d-none d-xl-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="shop">
-                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
-                                                       </div>
+                                                    <li class="has-dropdown">
+                                                       <a></a>
+                                                       <a></a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop/men/polo_assn' %}">Polo ASSN</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/mango' %}">Mango</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/timberland' %}">Timberland</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/ugg' %}">UGG</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/cos' %}">Cos</a></li>
+                                                           <li><a href="{% url 'shop/shop/men/crocs' %}">Crocs</a></li>
+                                                       </ul>
                                                    </li>
                                                 </ul>
                                              </li>
                                             <li class="static">
-                                                <a href="{% url 'shop/shop/women' %}">Женское<i class="icon-arrow-down"></i></a>
+                                                <a href="{% url 'shop/shop/men' %}">Женское<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <a href="{% url 'shop/shop/men' %}">Бренды</a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop/shop' %}">Кроссовки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Ботинки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Спортиваня обувь</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Туфли</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Тапочки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Шлепки</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Polo Ralph Lauren</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Victoria's Secret</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Tommy Hilfiger</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Tommy Jeans</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Marco Polo</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Calvin Klein</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Calvin Klein Jeans</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Marco Polo</a></li>
                                                        </ul>
                                                    </li>
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Brands</a>
+                                                       <a></a>
+                                                       <a></a>
                                                        <ul class="has-dropdown">
                                                            <li><a href="{% url 'shop/shop' %}">Nike</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Nike SB</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Adidas Original</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Converse</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">New Balance</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Reebok</a></li>
                                                            <li><a href="{% url 'shop/shop' %}">Puma</a></li>
                                                        </ul>
                                                    </li>
-                                                   <li class="d-none d-lg-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="{% url 'shop/shop' %}">
-                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
-                                                       </div>
+                                                   <li class="has-dropdown">
+                                                       <a></a>
+                                                       <a></a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Mango</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Jordan</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">UGG</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Massimo Dutti</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Zara</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">H&M</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Oysho</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Cos</a></li>
+                                                       </ul>
                                                    </li>
-                                                   <li class="d-none d-xl-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="shop">
-                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
-                                                       </div>
+                                                    <li class="has-dropdown">
+                                                       <a></a>
+                                                       <a></a>
+                                                       <ul class="has-dropdown">
+                                                           <li><a href="{% url 'shop/shop' %}">Polo ASSN</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">The North Face</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Timberland</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Spotry & Rich</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Levis</a></li>
+                                                           <li><a href="{% url 'shop/shop' %}">Crocs</a></li>
+                                                       </ul>
                                                    </li>
                                                 </ul>
                                              </li>
@@ -227,43 +254,14 @@
                                                 <a href="{% url 'shop/shop/accessories' %}">Аксессуары<i class="icon-arrow-down"></i></a>
                                                 <ul class="mega-menu mega-menu-2-col">
                                                    <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Категория</a>
+                                                       <a href="{% url 'shop/shop/accessories' %}">Категория</a>
                                                        <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop/shop' %}">Шапки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Шляпы</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Ремни</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Перчатки</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Украшения</a></li>
+                                                           <li><a href="{% url 'shop/shop/accessories' %}">Шапки</a></li>
+                                                           <li><a href="{% url 'shop/shop/accessories' %}">Шляпы</a></li>
+                                                           <li><a href="{% url 'shop/shop/accessories' %}">Ремни</a></li>
+                                                           <li><a href="{% url 'shop/shop/accessories' %}">Перчатки</a></li>
+                                                           <li><a href="{% url 'shop/shop/accessories' %}">Украшения</a></li>
                                                        </ul>
-                                                   </li>
-                                                   <li class="has-dropdown">
-                                                       <a href="{% url 'shop/shop' %}">Brands</a>
-                                                       <ul class="has-dropdown">
-                                                           <li><a href="{% url 'shop/shop' %}">Nike</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Adidas</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Zara</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">H&M</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Levis</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Mango</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Converse</a></li>
-                                                           <li><a href="{% url 'shop/shop' %}">Dyson</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="d-none d-lg-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="{% url 'shop/shop' %}">
-                                                               <img src="{% static '/img/banner/menu/banner-women.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">women</a>
-                                                       </div>
-                                                   </li>
-                                                   <li class="d-none d-xl-block">
-                                                       <div class="menu-banner-wrapper p-rel">
-                                                           <a class="w-img" href="shop">
-                                                               <img src="{% static '/img/banner/menu/banner-men.jpg' %}" alt="">
-                                                           </a>
-                                                            <a href="{% url 'shop/shop' %}" class="menu-banner-btn">men</a>
-                                                       </div>
                                                    </li>
                                                 </ul>
                                              </li>
