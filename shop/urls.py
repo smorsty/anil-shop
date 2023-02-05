@@ -13,7 +13,7 @@ urlpatterns = [
     path("shop/men/<int:pk>", views.shop_men_brand, name="shop/shop/men/{brand.pk}"),
 
     path("shop/women", views.shop_women, name="shop/shop/women"),
-    path("shop/women/<int:pk>", views.shop_women, name="shop/shop/women"),
+    path("shop/women/<int:pk>", views.shop_women_brand, name="shop/shop/women"),
 
     path("shop/accessories", views.shop_accessories, name="shop/shop/accessories"),
 
